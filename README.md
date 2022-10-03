@@ -1,6 +1,6 @@
 
 
- ASST. PROF. DR. UĞUR CORUH
+ **ASST. PROF. DR. UĞUR CORUH**
   - Computer Engineer (BS), Electrical and Computer Engineer (MSc/PhD)
   - Recep Tayyip Erdoğan University, Faculty of Engineering and Architecture, Department of Computer Engineering, Head of Computer Hardware Division,
   - Coruh R&D and Technology, Founder – General Manager
