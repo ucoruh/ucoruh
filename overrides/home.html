@@ -1,0 +1,64 @@
+{#- This file was automatically generated - do not edit -#}
+{% extends "main.html" %}
+{% block tabs %}
+  {{ super() }}
+  <style>
+    .md-header { position: initial; }
+    .md-main__inner { margin: 0; }
+    .md-content { display: none; }
+    @media screen and (min-width: 60em) { .md-sidebar--secondary { display: none; } }
+    @media screen and (min-width: 76.25em) { .md-sidebar--primary { display: none; } }
+    /* Flex container tanımı */
+    .mdx-hero {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap; /* Ekran dar olduğunda içerikleri alt alta diz */
+    }
+    /* İmaj ve içerik için stil tanımlamaları */
+    .mdx-hero__image, .mdx-hero__content {
+      flex: 1; /* İmaj ve içeriği eşit genişlikte dağıt */
+      min-width: 300px; /* İçerik ve imajın minimum genişliği */
+      max-width: 50%; /* İçerik ve imajın maksimum genişliğini sınırla */
+    }
+    .mdx-hero__image img {
+      width: 100%; /* İmajı kapsayıcısına sığdır */
+      height: auto; /* Orantıyı koruyarak yüksekliği otomatik ayarla */
+    }
+  </style>
+  <section class="mdx-container">
+    <div class="md-grid md-typeset">
+      <div class="mdx-hero">
+        {% if i18n_page_locale == "en" %}
+        <div class="mdx-hero__content">
+          <h1>{{ config.site_name_en }}</h1>
+          <p>{{ config.site_description_en }}</p>
+          <a href="{{ 'academic/academic/' | url }}" title="Quick start" class="md-button md-button--primary">
+            Quick start>>
+          </a>
+          <a href="https://www.ugurcoruh.com/" title="Visit My Site" class="md-button">
+            Visit My Site
+          </a>
+        </div>
+        {% endif %}
+        {% if i18n_page_locale == "tr" %}
+        <div class="mdx-hero__content">
+          <h1>{{ config.site_name_tr }}</h1>
+          <p>{{ config.site_description_tr }}</p>
+          <a href="{{ 'academic/academic/' | url }}" title="Hızlı Başlangıç" class="md-button md-button--primary">
+            Hızlı Başlangıç>>
+          </a>
+          <a href="https://www.ugurcoruh.com/" title="Sitemi Ziyaret Ediniz" class="md-button">
+            Sitemi Ziyaret Ediniz.
+          </a>
+        </div>
+        {% endif %}
+		<div class="mdx-hero__image">
+          <img src="images/homepage.png" alt="" draggable="false">
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+{% block content %}{% endblock %}
+{% block footer %}{% endblock %}

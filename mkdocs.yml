@@ -1,0 +1,243 @@
+# Project information
+site_name: "Dr. Uğur CORUH"
+site_name_en: "Dr. Uğur CORUH"
+site_name_tr: "Dr. Uğur CORUH"
+docs_dir: docs/  # Where to find the English markdown files
+site_dir: site/  # Where to put the English HTML files
+#exclude_docs: overrides/
+
+site_author: 'Asst. Prof. Dr. Uğur CORUH'
+site_url: 'https://ucoruh.github.io/ucoruh/'
+site_description: >-
+    Knowledgebase, Archive and Blog
+    
+site_description_en: >-
+    Knowledgebase, Archive and Blog
+
+site_description_tr: >-
+    Bilgi Bankası, Arşiv ve Blog
+
+# Repository
+repo_name: 'GitHub'
+repo_url: 'https://github.com/ucoruh/ucoruh'
+edit_uri: edit/main/docs/
+
+# Copyright
+copyright: Copyright &copy; 2008 - 2024 Asst. Prof. Dr. Uğur CORUH
+     
+# Configuration
+theme:
+  name: material
+  custom_dir: overrides
+  # Don't include MkDocs' JavaScript
+  include_search_page: false
+  search_index_only: true
+  
+  # Static files
+  static_templates:
+    - 404.html
+    
+  # Default values, taken from mkdocs_theme.yml
+  language: en
+  features:
+    - content.code.annotate
+    - content.tabs.link
+    - navigation.indexes
+    - navigation.sections
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+
+  palette:
+    - scheme: default
+      primary: cyan
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: orange
+      accent: orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+  font:
+    text: Roboto
+    code: Roboto Mono
+  favicon: images/favicon.png
+  icon:
+    logo: logo
+    
+# Customization
+extra:
+  annotate:
+    json: [.s2]
+  analytics:
+    provider: google
+    property: !ENV GOOGLE_ANALYTICS_UCORUH
+    feedback:
+      title: Was this page helpful?
+      ratings:
+        - icon: material/emoticon-happy-outline
+          name: This page was helpful
+          data: 1
+          note: >-
+            Thanks for your feedback!
+        - icon: material/emoticon-sad-outline
+          name: This page could be improved
+          data: 0
+          note: >- 
+            Thanks for your feedback! Help us improve this page by
+            using our <a href="..." target=_blank>feedback form</a>.
+  consent:
+    title: Cookie consent
+    description: >- 
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better.
+    cookies:
+      analytics: Google Analytics
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ucoruh
+    - icon: fontawesome/brands/bitbucket
+      link: https://bitbucket.org/ucoruh/
+    - icon: fontawesome/regular/compass
+      link: https://www.scopus.com/authid/detail.uri?authorId=57218950743
+    - icon: fontawesome/regular/id-card
+      link: https://dblp.org/pid/230/0394.html
+    - icon: fontawesome/brands/docker
+      link: https://hub.docker.com/u/ucoruh/
+    - icon: fontawesome/brands/orcid
+      link: https://orcid.org/my-orcid?orcid=0000-0003-4193-8401
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/ugurcoruh/
+    - icon: fontawesome/regular/moon
+      link: https://publons.com/researcher/1540204/ugur-coruh/
+    - icon: fontawesome/brands/google
+      link: https://scholar.google.com/citations?user=KIU4ltMAAAAJ&hl=tr
+    - icon: fontawesome/regular/clipboard
+      link: https://avesis.erdogan.edu.tr/ugur.coruh
+    - icon: fontawesome/regular/user
+      link: https://www.ugurcoruh.com/
+      
+# Extensions
+markdown_extensions:
+  - admonition
+  - abbr
+  - attr_list
+  - def_list
+  - footnotes
+  - meta
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: ucoruh
+      repo: ucoruh
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  - codehilite:
+      guess_lang: true
+
+# for github personal access token open - https://github.com/settings/tokens
+plugins:
+  - mkdocs-simple-hooks:
+      hooks:
+          on_env: "hooks:on_env"
+  # https://github.com/fire1ce/mkdocs-embed-external-markdown
+  - external-markdown
+  - mkdocs-video #https://pypi.org/project/mkdocs-video/
+  - search:
+      separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+  - i18n:
+      #docs_structure: suffix
+      fallback_to_default: true
+      reconfigure_material: true
+      reconfigure_search: true
+      languages:
+        - locale: en
+          default: true
+          name: English
+          build: true
+          site_name: "Knowledgebase, Archive and Blog"
+        - locale: tr
+          name: Türkçe
+          build: true
+          site_name: "Bilgi Bankası, Arşiv ve Blog"
+          nav_translations:
+            tr:
+              Home: 'Anasayfa'
+              Software: 'Yazılım'
+              Hardware: 'Donanım'
+              Academic: 'Akademik'
+              Out-of-Scope :  'Kapsam Dışı'
+              License: 'Lisans'
+              Changelog: 'Revizyon'
+  - tags:
+      tags_file: tags.md
+  - minify:
+      minify_html: true
+      htmlmin_opts:
+        remove_comments: true
+  - git-revision-date-localized:
+      type: timeago
+      # enabled: !ENV [MKDOCS_ENABLE_GIT_REVISION_DATE, True]
+  - git-authors:
+      sort_authors_by: contribution
+  - git-committers:
+      repository: ucoruh/ucoruh
+      docs_path: docs/
+      branch: main
+      #token: !!python/object/apply:os.getenv ["MKDOCS_GIT_COMMITTERS_APIKEY"]
+      token: !ENV MKDOCS_GIT_COMMITTERS_APIKEY
+      # enabled: !ENV [MKDOCS_GIT_COMMITTERS_APIKEY, True]
+  - macros
+
+extra_javascript:
+  - javascript/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  
+# Page tree
+nav:
+  - Home: index.md
+  - Software: software/software.md
+  - Hardware: hardware/hardware.md
+  - Academic: academic/academic.md
+  - Out-of-Scope : outofscope/outofscope.md
+  - License: license/license.md
+  - Changelog: changelog/changelog.md
+
+  
+

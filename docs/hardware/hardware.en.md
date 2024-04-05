@@ -1,0 +1,7 @@
+---
+template: main.html
+---
+
+# Hardware
+
+...
