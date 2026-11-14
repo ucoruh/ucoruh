@@ -1,0 +1,962 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Asst. Prof. Dr. Uğur Coruh — Recep Tayyip Erdoğan University, Computer Engineering. Applied, post-quantum and white-box cryptography, V2X security, smart cards and payment systems.">
+<meta property="og:title" content="Dr. Uğur Coruh">
+<meta property="og:description" content="Asst. Prof. Dr. Uğur Coruh — Recep Tayyip Erdoğan University, Computer Engineering. Applied, post-quantum and white-box cryptography, V2X security, smart cards and payment systems.">
+<meta property="og:url" content="https://www.ugurcoruh.com/">
+<link rel="canonical" href="https://www.ugurcoruh.com/">
+<style>[hidden]{display:none!important}img{max-width:100%}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}</style>
+<title>Dr. Uğur Coruh</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Art direction v2: one hue family (ultramarine to vivid cobalt) plus one signal-orange accent; monochrome cobalt-steel foil as material.
+   Texture = security printing: film grain, guilloche rosettes, wave-line bands, halftone fields, microprint.
+   3D = WebGL point lattice in the hero (2D canvas fallback), preserve-3d portrait plate, tilting hologram plates. */
+:root{
+  --s0:#eef1fc; --s1:#f4f5fd; --s2:#fafaff; --s3:#ffffff;
+  --ink:#0a0f3c; --ink2:#454b7d; --line:rgba(11,14,63,.17); --line2:rgba(11,14,63,.08);
+  --acc:#2233e6; --acc-s:rgba(34,51,230,.10); --hot:#b84a00; --hot-s:rgba(255,122,26,.13);
+  --hi:inset 0 1px 0 rgba(255,255,255,.95);
+  --sh:0 1px 2px rgba(20,30,160,.10),0 28px 54px -26px rgba(34,51,230,.5);
+  --shh:0 2px 4px rgba(20,30,160,.12),0 36px 70px -24px rgba(43,60,255,.65);
+  --pool1:rgba(43,60,255,.22); --pool2:rgba(255,122,26,.09); --pool3:rgba(43,60,255,.12); --vig:rgba(11,14,63,.06);
+  --glass:rgba(238,241,252,.72); --grain:.12; --dot:rgba(34,51,230,.30);
+  --name:linear-gradient(95deg,#1c2bd6,#2b3cff 33%,#2b3cff 42%,#aab4ff 50%,#2b3cff 58%,#2b3cff);
+  --plate-a:#e3e7ff; --plate-b:#f4f5ff; --duo:#161c96; --dk:0;
+  --foil:linear-gradient(115deg,#2b3cff,#9aa6ff 30%,#eef1ff 50%,#9aa6ff 70%,#2b3cff);
+  --waves:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='8'%3E%3Cpath d='M0 4Q10 0 20 4T40 4T60 4T80 4' fill='none' stroke='%237a86ff' stroke-opacity='.5' stroke-width='.7'/%3E%3C/svg%3E");
+  --fd:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --fb:"Instrument Sans","Segoe UI",system-ui,sans-serif;
+  --fm:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  --ease:cubic-bezier(.2,.7,.1,1);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --s0:#070a2e; --s1:#0d1245; --s2:#131a5a; --s3:#1b2372;
+  --ink:#f0f1ff; --ink2:#b3b8ea; --line:rgba(200,208,255,.18); --line2:rgba(200,208,255,.09);
+  --acc:#8f9fff; --acc-s:rgba(143,159,255,.14); --hot:#ff8a33; --hot-s:rgba(255,122,26,.16);
+  --hi:inset 0 1px 0 rgba(255,255,255,.10);
+  --sh:0 1px 2px rgba(0,0,20,.5),0 30px 60px -24px rgba(0,0,25,.85),0 0 0 1px rgba(143,159,255,.09);
+  --shh:0 2px 4px rgba(0,0,20,.5),0 36px 80px -22px rgba(70,92,255,.85);
+  --pool1:rgba(60,80,255,.46); --pool2:rgba(255,122,26,.13); --pool3:rgba(84,104,255,.20); --vig:rgba(0,0,15,.45);
+  --glass:rgba(7,10,46,.68); --grain:.16; --dot:rgba(143,159,255,.30);
+  --name:linear-gradient(95deg,#4a5cff,#7d8cff 33%,#7d8cff 42%,#eef0ff 50%,#7d8cff 58%,#7d8cff);
+  --plate-a:#cfd5ff; --plate-b:#e6e9ff; --duo:#1a22b8; --dk:1; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --s0:#070a2e; --s1:#0d1245; --s2:#131a5a; --s3:#1b2372;
+  --ink:#f0f1ff; --ink2:#b3b8ea; --line:rgba(200,208,255,.18); --line2:rgba(200,208,255,.09);
+  --acc:#8f9fff; --acc-s:rgba(143,159,255,.14); --hot:#ff8a33; --hot-s:rgba(255,122,26,.16);
+  --hi:inset 0 1px 0 rgba(255,255,255,.10);
+  --sh:0 1px 2px rgba(0,0,20,.5),0 30px 60px -24px rgba(0,0,25,.85),0 0 0 1px rgba(143,159,255,.09);
+  --shh:0 2px 4px rgba(0,0,20,.5),0 36px 80px -22px rgba(70,92,255,.85);
+  --pool1:rgba(60,80,255,.46); --pool2:rgba(255,122,26,.13); --pool3:rgba(84,104,255,.20); --vig:rgba(0,0,15,.45);
+  --glass:rgba(7,10,46,.68); --grain:.16; --dot:rgba(143,159,255,.30);
+  --name:linear-gradient(95deg,#4a5cff,#7d8cff 33%,#7d8cff 42%,#eef0ff 50%,#7d8cff 58%,#7d8cff);
+  --plate-a:#cfd5ff; --plate-b:#e6e9ff; --duo:#1a22b8; --dk:1; color-scheme:dark}
+/* the luminous cobalt band keeps one look in both themes */
+.deep{
+  --s0:#0b0f4a; --s1:#121866; --s2:#1a2180; --s3:#232b99;
+  --ink:#f3f4ff; --ink2:#d3d6fb; --line:rgba(220,225,255,.24); --line2:rgba(220,225,255,.12);
+  --acc:#b3beff; --acc-s:rgba(179,190,255,.14); --hot:#ff9a4a; --hot-s:rgba(255,122,26,.16);
+  --dot:rgba(255,255,255,.26);
+  color:var(--ink);
+  background:radial-gradient(60% 80% at 104% -10%,rgba(255,122,26,.26),transparent 60%),radial-gradient(70% 100% at -4% 104%,rgba(84,104,255,.6),transparent 60%),linear-gradient(135deg,#1c2bd6,#0a0d44 72%)}
+.end.deep{background:radial-gradient(70% 90% at -4% -10%,rgba(84,104,255,.6),transparent 60%),radial-gradient(60% 80% at 104% 104%,rgba(255,122,26,.22),transparent 60%),linear-gradient(200deg,#1c2bd6,#0a0d44 72%)}
+
+*{box-sizing:border-box}
+body{background:var(--s0);color:var(--ink);font:400 17px/1.62 var(--fb);margin:0;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:var(--acc);text-decoration:none;text-underline-offset:4px;text-decoration-thickness:1px}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:2px}
+::selection{background:var(--acc);color:var(--s0)}
+#site{position:relative;overflow-x:clip}
+[data-l="tr"] .en,[data-l="en"] .tr{display:none!important}
+.wrap{max-width:1280px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+@media (min-width:760px){.wrap{padding-left:max(40px, env(safe-area-inset-left, 0px));padding-right:max(40px, env(safe-area-inset-right, 0px))}}
+
+/* coloured light pools + vignette (fixed), clearly visible static film grain on top */
+#site::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(900px 620px at 88% -8%,var(--pool1),transparent 70%),radial-gradient(700px 600px at -6% 55%,var(--pool2),transparent 70%),radial-gradient(800px 600px at 60% 110%,var(--pool3),transparent 70%),radial-gradient(130% 100% at 50% 40%,transparent 62%,var(--vig))}
+#site::after{content:"";position:fixed;inset:0;z-index:30;pointer-events:none;opacity:var(--grain);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .55 0 0 0 1.1 -.05'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.hero,main,.end{position:relative;z-index:1}
+.guil{position:absolute;pointer-events:none;aspect-ratio:1;height:auto}
+.micro{font:500 6px/1 var(--fm);letter-spacing:.22em;white-space:nowrap;overflow:hidden;color:var(--ink2);opacity:.75;margin:0;padding:5px 0;border-top:1px solid var(--line);user-select:none}
+
+/* labels */
+.lbl{font:500 .72rem/1.4 var(--fm);letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);margin:0}
+.shi .lbl::before,.st-h .lbl::before{content:"";display:inline-block;width:28px;height:3px;margin-right:10px;vertical-align:middle;background:var(--foil)}
+.tag{display:inline-block;font:500 .68rem/1 var(--fm);letter-spacing:.06em;padding:5px 7px;border:1px solid var(--line);border-radius:2px;color:var(--ink2);white-space:nowrap}
+.tag.k{border-color:transparent;background:var(--acc-s);color:var(--acc)}
+.id{font:400 .78rem/1.45 var(--fm);color:var(--ink2);overflow-wrap:anywhere}
+
+/* top plane: the only glass */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:25;background:var(--s0)}
+.bar{position:sticky;top:env(safe-area-inset-top, 0px);z-index:20;background:var(--s0);border-bottom:1px solid var(--line2)}
+@supports ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+  .bar{background:var(--glass);-webkit-backdrop-filter:blur(16px) saturate(1.6);backdrop-filter:blur(16px) saturate(1.6)}}
+.bar .wrap{display:flex;align-items:center;gap:24px;padding-block:12px}
+.bar .name{font:700 1.05rem/1 var(--fd);letter-spacing:-.02em;color:var(--ink);white-space:nowrap}
+.bar nav{display:flex;gap:22px;overflow-x:auto;flex:1;min-width:0;scrollbar-width:none;justify-content:flex-end}
+.bar nav::-webkit-scrollbar{display:none}
+.bar nav a{color:var(--ink2);font-size:.86rem;white-space:nowrap;padding:4px 0;transition:color .25s}
+.bar nav a:hover{color:var(--acc);text-decoration:none}
+.lang{display:flex;border:1px solid var(--line);border-radius:3px;flex:none;overflow:hidden}
+.lang button{all:unset;cursor:pointer;font:500 .7rem/1 var(--fm);padding:7px 10px;color:var(--ink2);letter-spacing:.08em}
+.lang button[aria-pressed="true"]{background:var(--acc);color:var(--s0)}
+.lang button:focus-visible,.rail button:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+#prog{position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--foil);transform:scaleX(0);transform-origin:0 50%}
+
+/* hero */
+.hero{overflow:hidden;border-bottom:1px solid var(--line)}
+.hero::before{content:"";position:absolute;left:0;top:0;width:46%;height:46%;pointer-events:none;
+  background:radial-gradient(circle,var(--dot) 1.1px,transparent 1.7px) 0 0/10px 10px;
+  -webkit-mask-image:radial-gradient(80% 90% at 0% 0%,#000,transparent 70%);mask-image:radial-gradient(80% 90% at 0% 0%,#000,transparent 70%)}
+.lat{position:absolute;left:0;top:-90px;width:100%;height:calc(100% + 180px);pointer-events:none}
+.glw{display:none;position:absolute;right:-7%;top:calc(50% - min(520px,41vw));width:min(1040px,82vw);aspect-ratio:1;pointer-events:none}
+.glw canvas{display:block;width:100%;height:100%}
+.gl .glw{display:block}
+.gl .lat{display:none}
+.aura{position:absolute;right:-4%;top:calc(50% - min(470px,37vw));width:min(940px,74vw);aspect-ratio:1;pointer-events:none;
+  background:radial-gradient(circle at 46% 46%,var(--pool1) 0,transparent 64%)}
+.aura::after{content:"";position:absolute;inset:0;opacity:0;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.95) 0,rgba(120,138,255,.7) 16%,rgba(43,60,255,.6) 36%,transparent 62%)}
+.g-hero{right:-270px;bottom:-310px;width:640px;color:var(--acc);opacity:.26}
+.hero .micro{position:absolute;left:0;right:0;bottom:0;z-index:1}
+.hero-g{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"t p" "b p";column-gap:clamp(32px,6vw,96px);row-gap:clamp(28px,4vw,56px);
+  min-height:min(94svh,900px);align-content:center;padding-block:clamp(48px,7vw,96px) clamp(60px,7vw,108px)}
+.hero-t{grid-area:t;min-width:0}
+h1{margin:18px 0 0;font:inherit}
+.mk{display:block;overflow:hidden}
+.in{display:block}
+.rank{font:500 .86rem/1.4 var(--fm);letter-spacing:.04em;color:var(--hot)}
+.big{font:700 clamp(3.9rem,17.5vw,14rem)/.84 var(--fd);letter-spacing:-.05em;padding:.1em .04em .22em;margin:-.04em 0 -.2em -.04em}
+@supports ((-webkit-background-clip:text) or (background-clip:text)){
+  .big.g .in{background:var(--name) 0 0/300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;width:fit-content;padding-right:.06em}
+}
+.thesis{font:500 clamp(1.2rem,2.1vw,1.7rem)/1.3 var(--fd);letter-spacing:-.015em;max-width:31ch;margin:clamp(20px,3vw,36px) 0 0;text-wrap:balance}
+.thesis em{font-style:normal;color:var(--acc)}
+
+/* portrait: duotone print on a foil mat, a real 3D stack (frame behind, smart card in front) */
+.plate-w{grid-area:p;position:relative;align-self:center;margin:0;width:clamp(220px,26vw,330px);perspective:1000px}
+.plate{position:relative;transform-style:preserve-3d;transition:transform .5s var(--ease);will-change:transform}
+.plate::before{content:"";position:absolute;inset:22px -22px -22px 22px;border:2px solid;border-image:var(--foil) 1;transform:translateZ(-56px);opacity:.85}
+.pcard{position:relative;background:var(--waves) 0 0/80px 8px,var(--s3);padding:10px 10px 0;box-shadow:var(--hi),var(--sh);border-radius:3px;overflow:hidden}
+.ph{position:relative;overflow:hidden;isolation:isolate;background:linear-gradient(160deg,var(--plate-a),var(--plate-b))}
+.ph img{display:block;width:100%;height:auto;aspect-ratio:330/398;object-fit:cover;mix-blend-mode:multiply;filter:grayscale(1) contrast(1.08)}
+.ph::after{content:"";position:absolute;inset:0;background:var(--duo);mix-blend-mode:screen;pointer-events:none}
+.plate figcaption{display:flex;flex-direction:column;gap:2px;margin:0 -10px;padding:10px 12px 12px;background:var(--s3);border-top:3px solid transparent;border-image:var(--foil) 1;font:400 .7rem/1.4 var(--fm)}
+.mail{user-select:all;-webkit-user-select:all}
+.plate .loc{color:var(--ink2)}
+.idchip{position:absolute;left:-36px;top:56%;transform:translateZ(54px);display:flex;flex-direction:column;gap:3px;overflow:hidden;
+  background:linear-gradient(135deg,var(--s3),var(--s1));color:var(--ink);padding:11px 20px 11px 46px;box-shadow:var(--hi),var(--sh);border-radius:7px;font:500 .72rem/1.2 var(--fm);transition:box-shadow .3s}
+.idchip::before{content:"";position:absolute;left:12px;top:50%;width:24px;height:18px;margin-top:-9px;border-radius:4px;
+  background:linear-gradient(transparent 44%,rgba(90,50,0,.5) 44% 56%,transparent 56%),linear-gradient(90deg,transparent 30%,rgba(90,50,0,.5) 30% 37%,transparent 37% 63%,rgba(90,50,0,.5) 63% 70%,transparent 70%),linear-gradient(135deg,#f2c878,#b9832a)}
+.idchip::after{content:"";position:absolute;right:0;top:0;bottom:0;width:6px;background:var(--foil);background-size:100% 300%}
+.idchip small{font:400 .68rem/1.2 var(--fm);color:var(--ink2)}
+.idchip:hover{text-decoration:none;box-shadow:var(--hi),var(--shh)}
+.hero-b{grid-area:b;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 40px;min-width:0;border-top:1px solid var(--line);padding-top:22px}
+.role b{display:block;font:600 1.02rem/1.3 var(--fd)}
+.role span{color:var(--ink2);font-size:.92rem}
+.quick{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:10px;font-size:.9rem}
+.quick a{display:inline-flex;align-items:center;padding:10px 14px;border:1px solid var(--line);border-radius:4px;background:var(--s2);color:var(--ink);box-shadow:var(--hi);transition:transform .25s var(--ease),box-shadow .3s,border-color .3s}
+.quick a::after,.pf a .ar::after{content:"\2197";display:inline-block;margin-left:7px;color:var(--hot);transition:transform .3s var(--ease)}
+.quick a:hover{text-decoration:none;border-color:var(--acc);box-shadow:var(--hi),0 16px 30px -14px var(--acc)}
+.quick a:hover::after,.pf a:hover .ar::after{transform:translate3d(2px,-2px,0)}
+
+/* sections: sticky head left, content right; each opens with a halftone field */
+.sec{position:relative;padding-block:clamp(72px,10vw,150px);border-bottom:1px solid var(--line)}
+.sec::before{content:"";position:absolute;right:0;top:0;width:min(46%,560px);height:280px;pointer-events:none;
+  background:radial-gradient(circle,var(--dot) 1.1px,transparent 1.7px) 0 0/10px 10px;
+  -webkit-mask-image:radial-gradient(90% 100% at 100% 0%,#000,transparent 72%);mask-image:radial-gradient(90% 100% at 100% 0%,#000,transparent 72%)}
+.sg{position:relative;display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:32px clamp(32px,6vw,96px)}
+.shi{position:sticky;top:96px}
+h2{font:700 clamp(2.5rem,5.6vw,4.8rem)/.95 var(--fd);letter-spacing:-.04em;margin:14px 0 0;text-wrap:balance}
+.lead{color:var(--ink2);margin:18px 0 0;max-width:34ch}
+.idx{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:6px;font:400 .8rem/1.4 var(--fm)}
+.idx a{color:var(--ink2)}
+.idx a:hover{color:var(--acc)}
+.sb{min-width:0}
+h3.lbl{margin:56px 0 14px;scroll-margin-top:90px}
+.sb>h3.lbl:first-child{margin-top:6px}
+.about-l{font:500 clamp(1.3rem,2.3vw,1.8rem)/1.34 var(--fd);letter-spacing:-.015em;margin:0 0 22px;text-wrap:pretty}
+.about-p{max-width:62ch;color:var(--ink2);margin:0}
+.ints{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:32px}
+.ints li{padding:13px 0;border-top:1px solid var(--line);font:500 1.06rem/1.3 var(--fd);transition:color .25s}
+.ints li:hover{color:var(--acc)}
+
+.rows,.tl,.crs{list-style:none;margin:0;padding:0}
+.row{display:grid;grid-template-columns:5.2rem minmax(0,1fr);gap:4px 20px;padding:20px 12px;margin-inline:-12px;border-top:1px solid var(--line);scroll-margin-top:90px}
+.row:hover{background:linear-gradient(90deg,var(--acc-s),transparent)}
+.row:target,.plw:target .pl{background:var(--acc-s)}
+.yr{font:500 .8rem/1.95 var(--fm);color:var(--acc);font-variant-numeric:tabular-nums}
+.t{font:500 1.2rem/1.28 var(--fd);letter-spacing:-.012em;margin:0;text-wrap:pretty}
+.m{margin:6px 0 0;color:var(--ink2);font-size:.94rem}
+.m b{color:var(--ink);font-weight:600}
+.ids{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;margin-top:10px}
+.note{color:var(--ink2);max-width:62ch;margin:0}
+
+/* patents: security-printed plates with a hologram seal; tilt in 3D under the cursor */
+.plates{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:18px}
+.plw{perspective:900px;scroll-margin-top:90px}
+.pl{position:relative;overflow:hidden;height:100%;background:var(--s2);box-shadow:var(--hi),var(--sh);border-radius:7px;transition:transform .35s var(--ease),box-shadow .35s}
+.pl::before{content:"";position:absolute;inset:0;pointer-events:none;background:var(--foil);background-size:300% 300%;background-position:var(--x,50%) var(--y,50%);opacity:.05;transition:opacity .35s}
+.pl::after{content:"";position:absolute;right:16px;bottom:14px;width:42px;height:42px;border-radius:50%;pointer-events:none;
+  background:repeating-radial-gradient(circle,transparent 0 2px,var(--s2) 2px 3.4px),conic-gradient(from var(--a,20deg),#2b3cff,#dfe3ff,#2b3cff,#8f9dff,#eef0ff,#2b3cff)}
+.pl-h,.pl-b{position:relative;z-index:1}
+.pl-h{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:16px 20px;border-bottom:1px solid var(--line);
+  background:var(--waves) 0 0/80px 8px,linear-gradient(90deg,var(--acc-s),transparent)}
+.pl-b{padding:18px 20px 66px}
+.pn{font:500 1.02rem/1 var(--fm);letter-spacing:-.01em}
+.pl .t{font-size:1.04rem;line-height:1.36}
+.pl .yr{display:block;line-height:1.4;margin-bottom:8px}
+@media (hover:hover){.pl:hover{box-shadow:var(--hi),var(--shh)}.pl:hover::before{opacity:.2}}
+
+/* expertise: six domain plates, summary always visible, full list in a native disclosure */
+.xnote{font:400 .78rem/1.5 var(--fm);color:var(--ink2);margin:22px 0 0}
+.xps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start}
+.xp{position:relative;overflow:hidden;background:var(--s2);box-shadow:var(--hi),var(--sh);border-radius:7px;transition:box-shadow .35s}
+.xp.w{grid-column:1/-1}
+.xp-h{display:flex;align-items:center;gap:14px;padding:16px 20px;border-bottom:1px solid var(--line);
+  background:var(--waves) 0 0/80px 8px,linear-gradient(90deg,var(--acc-s),transparent)}
+.xi{flex:none;width:38px;height:38px;padding:6px;color:var(--hot);border:1px solid var(--line);border-radius:5px;background:var(--s3);box-shadow:var(--hi)}
+.xn{font:700 1.55rem/1.05 var(--fd);letter-spacing:-.03em;margin:0;flex:1;min-width:0}
+.xp.w .xn{font-size:clamp(1.8rem,3.4vw,2.6rem)}
+.xp-b{padding:16px 20px 16px}
+.xs{margin:0 0 8px;color:var(--ink2)}
+.xp summary{display:inline-flex;align-items:center;gap:9px;cursor:pointer;list-style:none;padding:8px 0;font:500 .78rem/1.4 var(--fm);color:var(--acc)}
+.xp summary::-webkit-details-marker{display:none}
+.xp summary::before{content:"+";display:inline-grid;place-items:center;width:20px;height:20px;border:1px solid var(--line);border-radius:3px;color:var(--hot);font-size:.9rem;line-height:1}
+.xp details[open] summary::before{content:"\2212"}
+.xp summary:hover{color:var(--ink)}
+.xl{list-style:none;margin:8px 0 4px;padding:0}
+.xl li{padding:9px 0;border-top:1px solid var(--line);font-size:.94rem;line-height:1.45;break-inside:avoid}
+.xp.w .xl{columns:2;column-gap:36px}
+@media (hover:hover){.xp:hover{box-shadow:var(--hi),var(--shh)}}
+@media (max-width:640px){.xps{grid-template-columns:minmax(0,1fr)}.xp.w .xl{columns:1}}
+@media print{.xp details>.xl{display:block}}
+
+.crs li{display:grid;grid-template-columns:minmax(7rem,11rem) minmax(0,1fr);align-items:baseline;gap:6px 16px;padding:18px 0;border-top:1px solid var(--line)}
+.crs .c{font:500 .8rem/1.4 var(--fm);color:var(--acc)}
+.crs .n{font:600 clamp(1.5rem,3.2vw,2.4rem)/1.1 var(--fd);letter-spacing:-.03em;transition:color .25s}
+.crs li:hover .n{color:var(--acc)}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 48px}
+.two h3.lbl{margin-top:6px}
+.tl li{display:grid;gap:2px;padding:16px 0;border-top:1px solid var(--line)}
+.tl .d{font:400 .78rem/1.5 var(--fm);color:var(--acc);font-variant-numeric:tabular-nums}
+.tl b{font:600 1.06rem/1.3 var(--fd);display:block}
+.tl .w{color:var(--ink2);font-size:.94rem}
+
+/* research story: stacked by default, pinned stage only when the page really scrolls */
+.story{position:relative;z-index:1;overflow:hidden}
+.stage{position:relative;padding-block:clamp(72px,10vw,140px)}
+.stage::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(circle,var(--dot) 1.1px,transparent 1.7px) 0 0/10px 10px;
+  -webkit-mask-image:radial-gradient(60% 80% at 8% 100%,#000,transparent 70%);mask-image:radial-gradient(60% 80% at 8% 100%,#000,transparent 70%)}
+.g-st{right:-150px;top:-170px;width:580px;color:#c9d1ff;opacity:.3}
+.st-in{position:relative}
+.st-h{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px 48px;margin-bottom:44px}
+.st-h h2{max-width:16ch}
+.st-h .lead{max-width:30ch;margin:0}
+.rail{display:none}
+.chs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.ch{position:relative;overflow:hidden;background:rgba(6,8,56,.42);border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:30px 28px 34px}
+.gh{position:absolute;right:-.04em;bottom:-.16em;font:700 7.5rem/.8 var(--fd);letter-spacing:-.05em;white-space:nowrap;color:rgba(255,255,255,.07);pointer-events:none;user-select:none}
+@supports (-webkit-text-stroke:1px #000){.gh{color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.24)}}
+.ch-a,.ch-r{position:relative}
+.per{font:500 .8rem/1.4 var(--fm);color:var(--hot);margin:0}
+.ch h3{font:700 clamp(1.6rem,2.8vw,2.3rem)/1.04 var(--fd);letter-spacing:-.03em;margin:12px 0 14px;text-wrap:balance}
+.ch p.x{color:var(--ink2);margin:0;max-width:46ch}
+.ch-r{list-style:none;margin:22px 0 0;padding:0}
+.ch-r li{border-top:1px solid var(--line)}
+.ch-r a{display:grid;grid-template-columns:minmax(0,10.5rem) minmax(0,1fr);gap:4px 14px;padding:11px 0;color:var(--ink);font-size:.92rem;line-height:1.35;transition:color .25s}
+.ch-r .id{color:var(--acc)}
+.ch-r a:hover{text-decoration:none;color:var(--hot)}
+.pin{height:calc(var(--vh,100vh)*3.6)}
+.pin .stage{position:sticky;top:0;height:var(--vh,100vh);padding-block:92px 40px;display:flex;overflow:hidden}
+.pin .st-in{display:flex;flex-direction:column;width:100%}
+.pin .st-h{margin-bottom:0;align-items:flex-end}
+.pin .st-h h2{font-size:clamp(1.5rem,2.4vw,2.1rem);letter-spacing:-.02em;max-width:none;margin:8px 0 0}
+.pin .st-h .lead{display:none}
+.pin .rail{display:flex;gap:clamp(16px,2.4vw,34px);position:relative;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.rail button{all:unset;cursor:pointer;font:500 .78rem/1.3 var(--fm);color:var(--ink2);transition:color .3s}
+.rail button[aria-current="true"]{color:var(--hot)}
+.rail i{position:absolute;left:0;bottom:-2px;width:100%;height:3px;background:var(--foil);transform:scaleX(0);transform-origin:0 50%}
+.pin .chs{flex:1;display:block;position:relative;border:0;min-height:0}
+.pin .ch{position:absolute;inset:0;padding:0;background:none;border:0;overflow:visible;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,6vw,96px);align-items:center;
+  opacity:0;visibility:hidden;transform:translate3d(0,36px,0);transition:opacity .45s var(--ease),transform .7s var(--ease),visibility 0s .45s}
+.pin .ch.on{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.pin .ch h3{font-size:clamp(2.4rem,min(5.8vw,9.5vh),5.6rem);line-height:.94;letter-spacing:-.045em;margin:16px 0 22px}
+.pin .ch p.x{font-size:1.1rem}
+.pin .ch-r{margin:0}
+.pin .gh{font-size:clamp(10rem,30vw,26rem);right:-8%;bottom:-3%}
+
+/* closing band */
+.end{overflow:hidden}
+.g-end{left:-180px;top:-200px;width:620px;color:#c9d1ff;opacity:.26}
+.pfs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px clamp(24px,4vw,56px)}
+.pf h3.lbl{margin:6px 0 12px}
+.pf ul{list-style:none;margin:0;padding:0}
+.pf a{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:11px 0;border-top:1px solid var(--line);color:var(--ink);transition:color .25s}
+.pf a:hover{text-decoration:none;color:var(--acc)}
+.pf small{font:400 .72rem/1.5 var(--fm);color:var(--ink2);overflow-wrap:anywhere;text-align:right;margin-left:auto}
+footer{position:relative;padding-block:clamp(40px,6vw,80px) 28px}
+.fname{font:700 clamp(3rem,14.5vw,12.5rem)/.84 var(--fd);letter-spacing:-.05em;white-space:nowrap;color:rgba(255,255,255,.12);margin:0 0 clamp(20px,3vw,40px) -.05em;user-select:none}
+@supports (-webkit-text-stroke:1px #000){.fname{color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.42)}}
+.fmeta{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;font:400 .76rem/1.5 var(--fm);color:var(--ink2);padding-top:14px}
+
+@media (max-width:899px){
+  .hero-g{grid-template-columns:minmax(0,1fr);grid-template-areas:"t" "p" "b";min-height:0}
+  .glw{right:-45%;top:-4%;width:130vw}
+  .aura{right:-40%;top:0;width:120vw}
+  .plate-w{width:220px;margin-left:14px}
+  .plate::before{inset:12px -12px -12px 12px}
+  .idchip{left:auto;right:-86px;top:auto;bottom:74px}
+  .sg{grid-template-columns:minmax(0,1fr)}
+  .shi{position:static}
+  .chs{grid-template-columns:minmax(0,1fr)}
+  .pfs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .g-hero{width:420px;right:-210px;bottom:auto;top:-210px}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .bar .name{display:none}
+  .bar nav{justify-content:flex-start;gap:18px}
+  .bar .wrap{gap:14px}
+  .hero-b,.ints,.two,.pfs{grid-template-columns:minmax(0,1fr)}
+  .row{grid-template-columns:minmax(0,1fr)}
+  .crs li{grid-template-columns:minmax(0,1fr)}
+  .ch{padding:26px 20px 30px}
+  .ch-r a{grid-template-columns:minmax(0,1fr)}
+  .gh{font-size:5.5rem}
+  .idchip{right:-64px}
+  .sec::before{width:70%;height:200px}
+}
+
+/* motion: everything rests visible; these only add the entrance */
+@keyframes rise{from{transform:translate3d(0,108%,0)}}
+@keyframes fadeup{from{opacity:0;transform:translate3d(0,28px,0)}}
+@keyframes fade{from{opacity:0}}
+@keyframes flare{0%{opacity:0;transform:scale(.15)}32%{opacity:.9}100%{opacity:0;transform:scale(1.3)}}
+@keyframes bloom{from{opacity:0;transform:scale(.6)}}
+@keyframes flip{from{opacity:0;transform:perspective(1000px) translate3d(60px,30px,0) rotateY(-32deg) rotateX(8deg) scale(.92)}}
+@keyframes spin{from{opacity:0;transform:rotate(-70deg) scale(.8)}}
+@keyframes sweep{from{background-position:100% 0}to{background-position:0 0}}
+@keyframes rv{from{opacity:0;transform:translate3d(0,26px,0)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:no-preference){
+  html{scroll-behavior:smooth}
+  .in{animation:rise .66s var(--ease) backwards;animation-delay:calc(var(--i,0)*80ms)}
+  .plate-w{animation:flip 1s var(--ease) .3s backwards}
+  .aura{animation:bloom 1.2s var(--ease) backwards}
+  .aura::after{animation:flare 1.3s ease-out .15s backwards}
+  .g-hero{animation:spin 1.4s var(--ease) backwards}
+  .big.g .in{animation:rise .66s var(--ease) backwards,sweep 1.3s var(--ease) .2s both;animation-delay:calc(var(--i,0)*80ms),.2s}
+  .hero-b{animation:fadeup .8s var(--ease) .4s backwards}
+  .lat{animation:fade 1.2s ease-out .1s backwards}
+  .io .rv{transition:opacity .6s var(--ease),transform .7s var(--ease)}
+  .io .rv.pre{opacity:0;transform:translate3d(0,24px,0)}
+  @supports (animation-timeline:view()){
+    .rv{animation:rv linear both;animation-timeline:view();animation-range:entry 0% entry 70%}
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+
+</head>
+<body>
+<div id="site" data-l="en">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="guil" fill="none" stroke="currentColor" stroke-width=".35"></g></defs></svg>
+<div class="bar"><div class="wrap">
+  <a class="name" href="#top">Uğur Coruh</a>
+  <nav aria-label="Sections">
+    <a href="#about"><span class="en">About</span><span class="tr">Hakkımda</span></a>
+    <a href="#research"><span class="en">Research</span><span class="tr">Araştırma</span></a>
+    <a href="#expertise"><span class="en">Expertise</span><span class="tr">Uzmanlık</span></a>
+    <a href="#publications"><span class="en">Publications</span><span class="tr">Yayınlar</span></a>
+    <a href="#projects"><span class="en">Projects</span><span class="tr">Projeler</span></a>
+    <a href="#patents"><span class="en">Patents</span><span class="tr">Patentler</span></a>
+    <a href="#teaching"><span class="en">Teaching</span><span class="tr">Dersler</span></a>
+    <a href="#cv"><span class="en">CV</span><span class="tr">Özgeçmiş</span></a>
+    <a href="#profiles"><span class="en">Profiles</span><span class="tr">Profiller</span></a>
+  </nav>
+  <div class="lang" role="group" aria-label="Language">
+    <button type="button" id="b-en" data-set="en" aria-pressed="true">EN</button>
+    <button type="button" id="b-tr" data-set="tr" aria-pressed="false">TR</button>
+  </div>
+</div><i id="prog" aria-hidden="true"></i></div>
+
+<header class="hero" id="top">
+  <div class="aura" aria-hidden="true"></div>
+  <svg class="guil g-hero" viewBox="-100 -100 200 200" aria-hidden="true"><use href="#guil"/></svg>
+  <div class="glw" data-depth=".1"><canvas id="gl" aria-hidden="true"></canvas></div>
+  <canvas class="lat" id="lat-far" data-depth=".16" aria-hidden="true"></canvas>
+  <canvas class="lat" id="lat-near" data-depth=".07" aria-hidden="true"></canvas>
+  <div class="wrap hero-g">
+    <div class="hero-t">
+      <p class="lbl mk" style="--i:0"><span class="in"><span class="en">Computer Engineering · Applied Cryptography</span><span class="tr">Bilgisayar Mühendisliği · Uygulamalı Kriptografi</span></span></p>
+      <h1>
+        <span class="mk rank" style="--i:1"><span class="in"><span class="en">Asst. Prof. Dr.</span><span class="tr">Dr. Öğr. Üyesi</span></span></span>
+        <span class="mk big" style="--i:2"><span class="in">Uğur</span></span>
+        <span class="mk big g" style="--i:3"><span class="in">Coruh</span></span>
+      </h1>
+      <p class="thesis mk" style="--i:5"><span class="in"><span class="en">Applied, <em>post-quantum</em> and <em>white-box</em> cryptography for machines and vehicles that have to trust each other.</span><span class="tr">Birbirine güvenmek zorunda olan makineler ve araçlar için uygulamalı, <em>kuantum sonrası</em> ve <em>beyaz kutu</em> kriptografi.</span></span></p>
+    </div>
+    <figure class="plate-w" data-depth="-.05">
+      <div class="plate" id="plate">
+        <div class="pcard">
+          <div class="ph"><img src="data:image/jpeg;base64,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" alt="Portrait of Uğur Coruh" width="330" height="398"></div>
+          <figcaption><span class="mail">ugur.coruh@erdogan.edu.tr</span><span class="loc">Rize, Türkiye</span></figcaption>
+        </div>
+        <a class="idchip" href="https://orcid.org/0000-0003-4193-8401" target="_blank" rel="noopener">ORCID<small>0000-0003-4193-8401</small></a>
+      </div>
+    </figure>
+    <div class="hero-b">
+      <div class="role"><b class="en">Recep Tayyip Erdoğan University</b><b class="tr">Recep Tayyip Erdoğan Üniversitesi</b><span class="en">Faculty of Engineering and Architecture, Department of Computer Engineering</span><span class="tr">Mühendislik ve Mimarlık Fakültesi, Bilgisayar Mühendisliği Bölümü</span></div>
+      <div class="role"><b>Coruh Arge</b><span class="en">Founder and General Manager, Dijitalpark Teknokent Rize</span><span class="tr">Kurucu ve Genel Müdür, Dijitalpark Teknokent Rize</span></div>
+      <div class="quick">
+        <a href="https://scholar.google.com/citations?user=KIU4ltMAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+        <a href="https://www.webofscience.com/wos/author/record/O-2919-2018" target="_blank" rel="noopener">Web of Science</a>
+        <a href="https://avesis.erdogan.edu.tr/ugur.coruh" target="_blank" rel="noopener">AVESİS</a>
+      </div>
+    </div>
+  </div>
+  <p class="micro" aria-hidden="true">UĞUR CORUH · APPLIED CRYPTOGRAPHY · POST-QUANTUM · WHITE-BOX · V2X · ML-KEM · IEEE 1609.2 · </p>
+</header>
+
+<main>
+<section id="about" class="sec"><div class="wrap sg">
+  <div class="sh"><div class="shi">
+    <p class="lbl"><span class="en">Profile</span><span class="tr">Profil</span></p>
+    <h2><span class="en">About</span><span class="tr">Hakkımda</span></h2>
+  </div></div>
+  <div class="sb">
+    <p class="about-l en">I am an Assistant Professor in the Department of Computer Engineering at Recep Tayyip Erdoğan University and the founder of Coruh Arge, an R&amp;D company at Dijitalpark Teknokent Rize. I received my PhD (2019) and MSc (2014) in Electrical and Computer Engineering from Altınbaş University and my BSc in Computer Engineering from Selçuk University (2009).</p>
+    <p class="about-p en">Before joining academia I worked for about ten years in industrial R&amp;D on smart cards, payment systems and mobile security at Paycore and Vakıfbank. My research focuses on applied cryptography, post-quantum and white-box cryptography, secure authentication and key management for M2M/IoT and vehicular (V2X) networks, and secure software.</p>
+    <p class="about-l tr">Recep Tayyip Erdoğan Üniversitesi Bilgisayar Mühendisliği Bölümünde Dr. Öğretim Üyesiyim ve Dijitalpark Teknokent Rize'de kurulu Coruh Arge'nin kurucusuyum. Doktoramı (2019) ve yüksek lisansımı (2014) Altınbaş Üniversitesi Elektrik ve Bilgisayar Mühendisliği programında, lisansımı Selçuk Üniversitesi Bilgisayar Mühendisliği bölümünde (2009) tamamladım.</p>
+    <p class="about-p tr">Akademiye geçmeden önce yaklaşık on yıl Paycore ve Vakıfbank'ta akıllı kartlar, ödeme sistemleri ve mobil güvenlik üzerine Ar-Ge çalışmaları yürüttüm. Çalışmalarım uygulamalı kriptografi, kuantum sonrası ve beyaz kutu kriptografi, M2M/IoT ve araçlar arası (V2X) ağlarda kimlik doğrulama ve anahtar yönetimi ile güvenli yazılım üzerinedir.</p>
+    <h3 class="lbl"><span class="en">Research interests</span><span class="tr">Araştırma alanları</span></h3>
+    <ul class="ints">
+      <li class="rv"><span class="en">Applied cryptography</span><span class="tr">Uygulamalı kriptografi</span></li>
+      <li class="rv"><span class="en">Post-quantum cryptography (ML-KEM, ML-DSA, Falcon)</span><span class="tr">Kuantum sonrası kriptografi (ML-KEM, ML-DSA, Falcon)</span></li>
+      <li class="rv"><span class="en">White-box cryptography</span><span class="tr">Beyaz kutu kriptografi</span></li>
+      <li class="rv"><span class="en">V2X / C-ITS security (IEEE 1609.2)</span><span class="tr">V2X / C-ITS güvenliği (IEEE 1609.2)</span></li>
+      <li class="rv"><span class="en">Authentication and key management</span><span class="tr">Kimlik doğrulama ve anahtar yönetimi</span></li>
+      <li class="rv"><span class="en">eSIM / SIM and smart cards</span><span class="tr">eSIM / SIM ve akıllı kartlar</span></li>
+      <li class="rv"><span class="en">IoT and M2M security</span><span class="tr">IoT ve M2M güvenliği</span></li>
+      <li class="rv"><span class="en">Secure software</span><span class="tr">Güvenli yazılım</span></li>
+    </ul>
+  </div>
+</div></section>
+
+<section id="research" class="story deep" aria-labelledby="st-t">
+  <div class="stage"><svg class="guil g-st" viewBox="-100 -100 200 200" aria-hidden="true"><use href="#guil"/></svg><div class="wrap st-in">
+    <div class="st-h">
+      <div>
+        <p class="lbl"><span class="en">Research</span><span class="tr">Araştırma</span></p>
+        <h2 id="st-t"><span class="en">From smart cards to post-quantum keys</span><span class="tr">Akıllı kartlardan kuantum sonrası anahtarlara</span></h2>
+      </div>
+      <p class="lead"><span class="en">Four chapters of one line of work, each tied to the papers, projects and patents below.</span><span class="tr">Tek bir çalışma çizgisinin dört bölümü; her biri aşağıdaki yayın, proje ve patentlere bağlı.</span></p>
+      <div class="rail" role="group" aria-label="Chapters">
+        <button type="button"><span class="en">Smart cards</span><span class="tr">Akıllı kartlar</span></button>
+        <button type="button">M2M / IoT</button>
+        <button type="button">V2X / C-ITS</button>
+        <button type="button"><span class="en">PQC · White-box</span><span class="tr">PQC · Beyaz kutu</span></button>
+        <i aria-hidden="true"></i>
+      </div>
+    </div>
+    <div class="chs">
+      <article class="ch">
+        <span class="gh" aria-hidden="true">SIM</span>
+        <div class="ch-a">
+          <p class="per">2009 – 2020</p>
+          <h3><span class="en">Smart cards and payment systems</span><span class="tr">Akıllı kartlar ve ödeme sistemleri</span></h3>
+          <p class="x"><span class="en">About ten years of industrial R&amp;D on smart cards, payment systems and mobile security at Paycore and Vakıfbank.</span><span class="tr">Paycore ve Vakıfbank'ta akıllı kartlar, ödeme sistemleri ve mobil güvenlik üzerine yaklaşık on yıllık sanayi Ar-Ge'si.</span></p>
+        </div>
+        <ul class="ch-r">
+          <li><a href="#p6"><span class="id">ITEA 3</span><span>VISCA · SOLOMON</span></a></li>
+          <li><a href="#p6"><span class="id">TSM / OTA</span><span><span class="en">TSMxpert mobile payment platform</span><span class="tr">TSMxpert mobil ödeme platformu</span></span></a></li>
+          <li><a href="#cv"><span class="id">2009 – 2020</span><span>Paycore · Vakıfbank</span></a></li>
+        </ul>
+      </article>
+      <article class="ch">
+        <span class="gh" aria-hidden="true">M2M</span>
+        <div class="ch-a">
+          <p class="per">2018 – 2021</p>
+          <h3><span class="en">Authentication and key exchange for M2M and IoT</span><span class="tr">M2M ve IoT için kimlik doğrulama ve anahtar değişimi</span></h3>
+          <p class="x"><span class="en">A hybrid authentication and key exchange scheme for M2M home networks, a doctoral thesis on secure communication for M2M and vehicular ad hoc networks, and lightweight offline authentication for remote work.</span><span class="tr">M2M ev ağları için hibrit kimlik doğrulama ve anahtar değişimi şeması, M2M ve araç ağlarında (VANET) güvenli haberleşme üzerine doktora tezi ve uzaktan çalışma için hafif çevrimdışı kimlik doğrulama.</span></p>
+        </div>
+        <ul class="ch-r">
+          <li><a href="#j5"><span class="id">10.1155/2018/6563089</span><span>Security and Communication Networks, 2018</span></a></li>
+          <li><a href="#t1"><span class="id">YÖK 611232</span><span><span class="en">PhD thesis, 2019</span><span class="tr">Doktora tezi, 2019</span></span></a></li>
+          <li><a href="#c2"><span class="id">ICECET 2021</span><span><span class="en">Lightweight offline authentication</span><span class="tr">Hafif çevrimdışı kimlik doğrulama</span></span></a></li>
+        </ul>
+      </article>
+      <article class="ch">
+        <span class="gh" aria-hidden="true">V2X</span>
+        <div class="ch-a">
+          <p class="per">2022 – 2026</p>
+          <h3><span class="en">V2X / C-ITS security, key renewal and revocation</span><span class="tr">V2X / C-ITS güvenliği, anahtar yenileme ve iptal</span></h3>
+          <p class="x"><span class="en">Authentication and revocation for vehicular networks, secure asymmetric key renewal and revocation for eSIM/SIM and ITS/C-ITS, and a LoRa-based V2X messaging testbed with IEEE 1609.2 security.</span><span class="tr">Araç ağları için kimlik doğrulama ve iptal, eSIM/SIM ve ITS/C-ITS için güvenli asimetrik anahtar yenileme ve iptal etme, IEEE 1609.2 güvenlikli LoRa tabanlı V2X mesajlaşma test ortamı.</span></p>
+        </div>
+        <ul class="ch-r">
+          <li><a href="#j4"><span class="id">10.1016/j.jisa.2021.103081</span><span>ESAR · JISA, 2022</span></a></li>
+          <li><a href="#p1"><span class="id">TÜBİTAK 7230092 · 7220514</span><span>TEYDEB 1507</span></a></li>
+          <li><a href="#pt1"><span class="id">TR 2023/001074 · 2023/001121</span><span><span class="en">Patents</span><span class="tr">Patentler</span></span></a></li>
+          <li><a href="#c1"><span class="id">UBMK 2026</span><span><span class="en">LoRa V2X testbed</span><span class="tr">LoRa V2X test ortamı</span></span></a></li>
+        </ul>
+      </article>
+      <article class="ch">
+        <span class="gh" aria-hidden="true">ML-KEM</span>
+        <div class="ch-a">
+          <p class="per">2026</p>
+          <h3><span class="en">Post-quantum and white-box cryptography</span><span class="tr">Kuantum sonrası ve beyaz kutu kriptografi</span></h3>
+          <p class="x"><span class="en">PQ-WB-KEM: toward a white-box construction of ML-KEM-768 with arithmetic masking for M2M communications.</span><span class="tr">PQ-WB-KEM: M2M haberleşmesi için aritmetik maskelemeli, beyaz kutu bir ML-KEM-768 yapısına doğru.</span></p>
+        </div>
+        <ul class="ch-r">
+          <li><a href="#j1"><span class="id">10.3390/math14173072</span><span>Mathematics 14(17), 3072 · SCIE</span></a></li>
+          <li><a href="#about"><span class="id">ML-KEM · ML-DSA · Falcon</span><span><span class="en">Research interests</span><span class="tr">Araştırma alanları</span></span></a></li>
+          <li><a href="#p5"><span class="id">TÜBİTAK 3210293</span><span><span class="en">Side-channel-resistant 5G hardware</span><span class="tr">Yan kanala dayanıklı 5G donanımı</span></span></a></li>
+        </ul>
+      </article>
+    </div>
+  </div></div>
+</section>
+
+<section id="expertise" class="sec"><div class="wrap sg">
+  <div class="sh"><div class="shi">
+    <p class="lbl"><span class="en">Industry</span><span class="tr">Sanayi</span></p>
+    <h2><span class="en">Expertise</span><span class="tr">Uzmanlık</span></h2>
+    <p class="lead"><span class="en">More than 13 years of industrial R&amp;D across cryptography, payments, telecom, IoT, security, V2X, AI and medical devices — from standards and certification to production systems.</span><span class="tr">Kriptografi, ödeme sistemleri, telekom, IoT, siber güvenlik, V2X, yapay zekâ ve tıbbi cihazlarda; standart ve sertifikasyondan üretim sistemlerine 13 yılı aşkın sanayi Ar-Ge deneyimi.</span></p>
+    <p class="xnote">Paycore · Vakıfbank · Coruh Arge</p>
+  </div></div>
+  <div class="sb xps">
+      <article class="xp rv w"><div class="xp-h"><svg class="xi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="16" r="4"/><path d="M11 13 20 4M16 8l3 3M13.5 10.5l2 2"/></svg><h3 class="xn"><span class="en">Applied &amp; post-quantum cryptography</span><span class="tr">Uygulamalı ve kuantum sonrası kriptografi</span></h3><span class="tag k">5</span></div><div class="xp-b"><p class="xs"><span class="en">Post-quantum and white-box constructions, authentication, key renewal and revocation.</span><span class="tr">Kuantum sonrası ve beyaz kutu yapılar, kimlik doğrulama, anahtar yenileme ve iptal.</span></p><details><summary><span class="en">All 5 items</span><span class="tr">5 maddenin tümü</span></summary><ul class="xl"><li><span class="en">Toward a white-box construction of ML-KEM-768 with arithmetic masking (Mathematics, 2026)</span><span class="tr">Aritmetik maskelemeli, beyaz kutu bir ML-KEM-768 yapısına doğru (Mathematics, 2026)</span></li><li><span class="en">IEEE 1609.2 security on a LoRa-based V2X messaging testbed (UBMK 2026)</span><span class="tr">LoRa tabanlı V2X mesajlaşma test ortamında IEEE 1609.2 güvenliği (UBMK 2026)</span></li><li><span class="en">Authentication and revocation schemes for VANETs and M2M networks (ESAR, 2022; Security and Communication Networks, 2018)</span><span class="tr">Araç ağları (VANET) ve M2M ağları için kimlik doğrulama ve iptal şemaları (ESAR, 2022; Security and Communication Networks, 2018)</span></li><li><span class="en">Asymmetric key renewal and revocation for eSIM/SIM and V2X (TÜBİTAK 1507 projects, TR patents)</span><span class="tr">eSIM/SIM ve V2X için asimetrik anahtar yenileme ve iptal etme (TÜBİTAK 1507 projeleri, TR patentleri)</span></li><li><span class="en">Side-channel-resistant hardware implementations of 5G cryptographic algorithms (TÜBİTAK 1501, academic advisor)</span><span class="tr">5G kriptografik algoritmalarının yan kanal ataklarına dayanıklı donanım gerçeklemeleri (TÜBİTAK 1501, akademik danışman)</span></li></ul></details></div></article>
+      <article class="xp rv"><div class="xp-h"><svg class="xi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 5 6v5c0 4.5 3 8 7 10 4-2 7-5.5 7-10V6z"/><circle cx="12" cy="11" r="1.6"/><path d="M12 12.6v2.9"/></svg><h3 class="xn"><span class="en">Cyber security</span><span class="tr">Siber güvenlik</span></h3><span class="tag k">6</span></div><div class="xp-b"><p class="xs"><span class="en">Protocol design, tamper-proof software, RASP and white-box cryptography.</span><span class="tr">Protokol tasarımı, kurcalamaya dayanıklı yazılım, RASP ve beyaz kutu kriptografi.</span></p><details><summary><span class="en">All 6 items</span><span class="tr">6 maddenin tümü</span></summary><ul class="xl"><li><span class="en">Secure communication protocol design</span><span class="tr">Güvenli haberleşme protokolü tasarımı</span></li><li><span class="en">Tamper-proof software for mobile, web and desktop</span><span class="tr">Mobil, web ve masaüstü için kurcalamaya dayanıklı (tamper-proof) yazılım</span></li><li><span class="en">Runtime application self-protection (RASP) and code hardening</span><span class="tr">Çalışma zamanında uygulama öz koruması (RASP) ve kod sıkılaştırma</span></li><li><span class="en">Data-at-rest, data-in-use and data-in-transit protection</span><span class="tr">Durağan, kullanımdaki ve aktarım hâlindeki verinin korunması</span></li><li><span class="en">White-box cryptography</span><span class="tr">Beyaz kutu kriptografi</span></li><li><span class="en">Security certification management</span><span class="tr">Güvenlik sertifikasyonu yönetimi</span></li></ul></details></div></article>
+      <article class="xp rv"><div class="xp-h"><svg class="xi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 16v-3l2-5a2 2 0 0 1 1.9-1.3h10.2A2 2 0 0 1 19 8l2 5v3M3 13h18M2.5 16h2.7M8.8 16h6.4M18.8 16h2.7"/><circle cx="7" cy="16.5" r="1.8"/><circle cx="17" cy="16.5" r="1.8"/></svg><h3 class="xn">V2X</h3><span class="tag k">2</span></div><div class="xp-b"><p class="xs"><span class="en">Secure communication protocols and network simulation.</span><span class="tr">Güvenli haberleşme protokolleri ve ağ benzetimi.</span></p><details><summary><span class="en">All 2 items</span><span class="tr">2 maddenin tümü</span></summary><ul class="xl"><li><span class="en">IoV, VANET, M2M, IoS and IoE secure communication protocol implementations</span><span class="tr">IoV, VANET, M2M, IoS ve IoE güvenli haberleşme protokolü uygulamaları</span></li><li><span class="en">NS-3, SUMO, TraNS and Veins simulations</span><span class="tr">NS-3, SUMO, TraNS ve Veins benzetimleri</span></li></ul></details></div></article>
+      <article class="xp rv w"><div class="xp-h"><svg class="xi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3 10h18M6.5 15h4"/></svg><h3 class="xn">FinTech</h3><span class="tag k">18</span></div><div class="xp-b"><p class="xs"><span class="en">TSM/OTA, EMV personalization, HSM key management, POS and payment kernels.</span><span class="tr">TSM/OTA, EMV kişiselleştirme, HSM anahtar yönetimi, POS ve ödeme çekirdekleri.</span></p><details><summary><span class="en">All 18 items</span><span class="tr">18 maddenin tümü</span></summary><ul class="xl"><li><span class="en">Delegated, fully authorized and simple-mode TSM (Trusted Service Manager) and OTA (Over-the-Air) development for NFC ecosystem smart-card lifecycle and personalization</span><span class="tr">NFC ekosistemi akıllı kart yaşam döngüsü ve kişiselleştirmesi için yetki devirli (delegated), tam yetkili ve basit kip TSM (Trusted Service Manager) ile OTA (Over-the-Air) geliştirme</span></li><li><span class="en">EMV smart-card script and lifecycle management for prepaid, debit and credit cards</span><span class="tr">Ön ödemeli, banka ve kredi kartları için EMV akıllı kart script ve yaşam döngüsü yönetimi</span></li><li><span class="en">EMV and non-EMV smart-card personalization for instant, kiosk and mass-production systems</span><span class="tr">Anında, kiosk ve seri üretim sistemleri için EMV ve EMV dışı akıllı kart kişiselleştirme</span></li><li><span class="en">Payment-system smart-card applet development (AMEX, MPP)</span><span class="tr">Ödeme sistemi akıllı kart applet geliştirme (AMEX, MPP)</span></li><li><span class="en">STK and wallet development</span><span class="tr">STK ve cüzdan geliştirme</span></li><li><span class="en">OTP-based login and transaction data signing (CAP/DPA)</span><span class="tr">OTP tabanlı giriş ve işlem verisi imzalama (CAP/DPA)</span></li><li><span class="en">Non-EMV OTP systems</span><span class="tr">EMV dışı OTP sistemleri</span></li><li><span class="en">HSM key management and cryptographic operations (PKCS#11, AES, DES, 3DES, RSA, ECC, SHA-1, SHA-256)</span><span class="tr">HSM anahtar yönetimi ve kriptografik işlemler (PKCS#11, AES, DES, 3DES, RSA, ECC, SHA-1, SHA-256)</span></li><li><span class="en">PCI-DSS certification and implementation</span><span class="tr">PCI-DSS sertifikasyonu ve uygulaması</span></li><li><span class="en">Central management system for cash register devices (Ministry of Finance, Türkiye)</span><span class="tr">Yazar kasa cihazları için merkezi yönetim sistemi (Maliye Bakanlığı, Türkiye)</span></li><li><span class="en">Bus validator central management system</span><span class="tr">Otobüs validatörü merkezi yönetim sistemi</span></li><li><span class="en">L2-certified contact/contactless payment kernel for terminals</span><span class="tr">Terminaller için L2 sertifikalı temaslı/temassız ödeme çekirdeği (kernel)</span></li><li><span class="en">POS terminal management system (TMS)</span><span class="tr">POS terminal yönetim sistemi (TMS)</span></li><li><span class="en">Mobile Android POS</span><span class="tr">Mobil Android POS</span></li><li><span class="en">Android and iOS core applications</span><span class="tr">Android ve iOS çekirdek uygulamaları</span></li><li><span class="en">Smart city, smart power grid and smart border control solutions</span><span class="tr">Akıllı şehir, akıllı elektrik şebekesi ve akıllı sınır kontrol çözümleri</span></li><li><span class="en">Fraud detection systems</span><span class="tr">Dolandırıcılık tespit sistemleri</span></li><li><span class="en">Loyalty and campaign systems</span><span class="tr">Sadakat ve kampanya sistemleri</span></li></ul></details></div></article>
+      <article class="xp rv"><div class="xp-h"><svg class="xi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19v-3M10 19v-7M15 19V8M20 19V4"/></svg><h3 class="xn"><span class="en">Telecom</span><span class="tr">Telekom</span></h3><span class="tag k">8</span></div><div class="xp-b"><p class="xs"><span class="en">3G to 5G RAN/CN, SIM/STK, OTA messaging and standards implementation.</span><span class="tr">3G'den 5G'ye RAN/CN, SIM/STK, OTA mesajlaşma ve standart uygulamaları.</span></p><details><summary><span class="en">All 8 items</span><span class="tr">8 maddenin tümü</span></summary><ul class="xl"><li><span class="en">Cellular concepts and RF modulation/demodulation</span><span class="tr">Hücresel haberleşme kavramları ve RF modülasyon/demodülasyon</span></li><li><span class="en">3G/3.5G, 4G (LTE) and 5G RAN/CN back-end</span><span class="tr">3G/3.5G, 4G (LTE) ve 5G RAN/CN arka ucu</span></li><li><span class="en">All-in-one local RAN and CN development with femtocells</span><span class="tr">Femtocell'lerle hepsi bir arada yerel RAN ve CN geliştirme</span></li><li><span class="en">Implementations of ETSI, GSMA, ISO/IEC 7810, 7816, 14443, 10373, 18092, 21481, 3GPP and GlobalPlatform standards</span><span class="tr">ETSI, GSMA, ISO/IEC 7810, 7816, 14443, 10373, 18092, 21481, 3GPP ve GlobalPlatform standartlarının uygulamaları</span></li><li><span class="en">SMSC (SMPP, UCP/EMI) integration with OTA</span><span class="tr">OTA ile SMSC (SMPP, UCP/EMI) entegrasyonu</span></li><li><span class="en">CAT_TP development</span><span class="tr">CAT_TP geliştirme</span></li><li><span class="en">Wi-Fi-based localization</span><span class="tr">Wi-Fi tabanlı konum belirleme</span></li><li><span class="en">SIM/STK-based indoor and outdoor localization with femtocells and wide RAN</span><span class="tr">Femtocell'ler ve geniş RAN ile SIM/STK tabanlı iç ve dış mekân konum belirleme</span></li></ul></details></div></article>
+      <article class="xp rv"><div class="xp-h"><svg class="xi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M10 7V4M14 7V4M10 20v-3M14 20v-3M7 10H4M7 14H4M20 10h-3M20 14h-3"/></svg><h3 class="xn">IoT</h3><span class="tag k">5</span></div><div class="xp-b"><p class="xs"><span class="en">Remote device management, back-end services and M2M secure communication.</span><span class="tr">Uzaktan cihaz yönetimi, arka uç servisleri ve M2M güvenli haberleşme.</span></p><details><summary><span class="en">All 5 items</span><span class="tr">5 maddenin tümü</span></summary><ul class="xl"><li><span class="en">Remote monitoring and remote device management</span><span class="tr">Uzaktan izleme ve uzaktan cihaz yönetimi</span></li><li><span class="en">IoT back-end monitoring and management services</span><span class="tr">IoT arka uç izleme ve yönetim servisleri</span></li><li><span class="en">M2M secure communication protocols</span><span class="tr">M2M güvenli haberleşme protokolleri</span></li><li><span class="en">Smart-card-integrated IoT solutions</span><span class="tr">Akıllı kart entegreli IoT çözümleri</span></li><li><span class="en">Smart city and smart farming implementations</span><span class="tr">Akıllı şehir ve akıllı tarım uygulamaları</span></li></ul></details></div></article>
+      <article class="xp rv"><div class="xp-h"><svg class="xi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="7" r="2"/><circle cx="5" cy="17" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="7" r="2"/><circle cx="19" cy="17" r="2"/><path d="M6.7 8.2l3.6 2.6M6.7 15.8l3.6-2.6M13.7 10.8l3.6-2.6M13.7 13.2l3.6 2.6"/></svg><h3 class="xn"><span class="en">AI &amp; data</span><span class="tr">Yapay zekâ ve veri</span></h3><span class="tag k">4</span></div><div class="xp-b"><p class="xs"><span class="en">Deep learning, climate-signal analysis and AI-assisted damage analysis.</span><span class="tr">Derin öğrenme, iklim sinyali analizi ve yapay zekâ destekli hasar analizi.</span></p><details><summary><span class="en">All 4 items</span><span class="tr">4 maddenin tümü</span></summary><ul class="xl"><li><span class="en">Deep-learning classification of Agaricus bisporus diseases (Agronomy, 2025)</span><span class="tr">Agaricus bisporus hastalıklarının derin öğrenme ile sınıflandırılması (Agronomy, 2025)</span></li><li><span class="en">Climate-signal detectability analysis of Eastern Black Sea tea purchases (JAES, 2026)</span><span class="tr">Doğu Karadeniz çay alımlarında iklim sinyalinin saptanabilirliği analizi (JAES, 2026)</span></li><li><span class="en">AI-assisted damage analysis of composite pipes (RTEÜ BAP FBA-2025-2039)</span><span class="tr">Kompozit borularda yapay zekâ destekli hasar analizi (RTEÜ BAP FBA-2025-2039)</span></li><li><span class="en">Advising TEKNOFEST finalist teams in Turkish NLP and Robotaxi</span><span class="tr">TEKNOFEST Türkçe Doğal Dil İşleme ve Robotaksi finalist takımlarına danışmanlık</span></li></ul></details></div></article>
+      <article class="xp rv"><div class="xp-h"><svg class="xi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 3l4 4M19 5l-2.5 2.5M14 5.5l4.5 4.5M15.5 7 7 15.5V17h1.5L17 8.5M7 17l-4 4M10.5 12l1.5 1.5"/></svg><h3 class="xn"><span class="en">Medical devices</span><span class="tr">Tıbbi cihazlar</span></h3><span class="tag k">2</span></div><div class="xp-b"><p class="xs"><span class="en">Biosignal processing and electrical uroflowmetry devices.</span><span class="tr">Biyosinyal işleme ve elektriksel üroflowmetri cihazları.</span></p><details><summary><span class="en">All 2 items</span><span class="tr">2 maddenin tümü</span></summary><ul class="xl"><li><span class="en">Biosignal processing</span><span class="tr">Biyosinyal işleme</span></li><li><span class="en">Electrical uroflowmetry devices</span><span class="tr">Elektriksel üroflowmetri cihazları</span> (<a href="#patents"><span class="en">see Patents — granted TR patents</span><span class="tr">bkz. Patentler — tescilli TR patentleri</span></a>)</li></ul></details></div></article>
+  </div>
+</div></section>
+
+<section id="publications" class="sec"><div class="wrap sg">
+  <div class="sh"><div class="shi">
+    <p class="lbl"><span class="en">Peer-reviewed</span><span class="tr">Hakemli</span></p>
+    <h2><span class="en">Publications</span><span class="tr">Yayınlar</span></h2>
+    <p class="lead"><span class="en">Selected peer-reviewed work. Full and current lists are on ORCID and Google Scholar.</span><span class="tr">Hakemli yayınlar. Güncel ve tam liste ORCID ve Google Akademik'te.</span></p>
+    <ul class="idx">
+      <li><a href="#pub-j"><span class="en">Journal articles</span><span class="tr">Dergi makaleleri</span> · 5</a></li>
+      <li><a href="#pub-c"><span class="en">Conference papers</span><span class="tr">Bildiriler</span> · 3</a></li>
+      <li><a href="#pub-b"><span class="en">Book chapters</span><span class="tr">Kitap bölümleri</span> · 2</a></li>
+      <li><a href="#pub-t"><span class="en">Theses</span><span class="tr">Tezler</span> · 2</a></li>
+    </ul>
+  </div></div>
+  <div class="sb">
+    <h3 class="lbl" id="pub-j"><span class="en">Journal articles</span><span class="tr">Dergi makaleleri</span></h3>
+    <ul class="rows">
+      <li class="row rv" id="j1"><span class="yr">2026</span><div><p class="t">PQ-WB-KEM: Toward a White-Box Construction of ML-KEM-768 with Arithmetic Masking for M2M Communications</p><p class="m"><b>U. Coruh</b> · <i>Mathematics</i> 14(17), 3072</p><div class="ids"><span class="tag k">SCIE</span><a class="id" href="https://doi.org/10.3390/math14173072" target="_blank" rel="noopener">doi:10.3390/math14173072</a></div></div></li>
+      <li class="row rv" id="j2"><span class="yr">2026</span><div><p class="t" lang="tr">Doğu Karadeniz Çay Alımlarında Yaz İklim Sinyalinin Yıllık, İl ve Sürgün Ölçeğinde Saptanabilirliği</p><p class="m"><b>U. Coruh</b> · <i>Journal of Anatolian Environmental and Animal Sciences</i> 11</p><div class="ids"><span class="tag k">TR Dizin</span><a class="id" href="https://doi.org/10.35229/jaes.2052028" target="_blank" rel="noopener">doi:10.35229/jaes.2052028</a></div></div></li>
+      <li class="row rv" id="j3"><span class="yr">2025</span><div><p class="t">Classification and Analysis of Agaricus bisporus Diseases with Pre-Trained Deep Learning Models</p><p class="m">Ü. Albayrak, A. Gölcük, S. Aktaş, <b>U. Coruh</b>, Ş. Taşdemir, Ö. K. Baykan · <i>Agronomy</i> 15(1), 226</p><div class="ids"><span class="tag k">SCIE</span><a class="id" href="https://doi.org/10.3390/agronomy15010226" target="_blank" rel="noopener">doi:10.3390/agronomy15010226</a></div></div></li>
+      <li class="row rv" id="j4"><span class="yr">2022</span><div><p class="t">ESAR: Enhanced Secure Authentication and Revocation Scheme for Vehicular Ad Hoc Networks</p><p class="m"><b>U. Coruh</b>, O. Bayat · <i>Journal of Information Security and Applications</i> 64, 103081</p><div class="ids"><span class="tag k">SCIE</span><a class="id" href="https://doi.org/10.1016/j.jisa.2021.103081" target="_blank" rel="noopener">doi:10.1016/j.jisa.2021.103081</a></div></div></li>
+      <li class="row rv" id="j5"><span class="yr">2018</span><div><p class="t">Hybrid Secure Authentication and Key Exchange Scheme for M2M Home Networks</p><p class="m"><b>U. Coruh</b>, O. Bayat · <i>Security and Communication Networks</i> 2018, 6563089</p><div class="ids"><span class="tag k">SCIE</span><a class="id" href="https://doi.org/10.1155/2018/6563089" target="_blank" rel="noopener">doi:10.1155/2018/6563089</a></div></div></li>
+    </ul>
+
+    <h3 class="lbl" id="pub-c"><span class="en">Conference papers</span><span class="tr">Bildiriler</span></h3>
+    <ul class="rows">
+      <li class="row rv" id="c1"><span class="yr">2026</span><div><p class="t">A LoRa-Based Multi-Entity V2X Messaging Testbed for Cooperative ITS: Standards-Compliant Encoding, IEEE 1609.2 Security, and Airtime Analysis</p><p class="m"><b>U. Coruh</b> · <i>11th International Conference on Computer Science and Engineering (UBMK)</i>, Istanbul, pp. 606–611</p><div class="ids"><span class="tag">IEEE</span><a class="id" href="https://doi.org/10.1109/UBMK71847.2026.11745154" target="_blank" rel="noopener">doi:10.1109/UBMK71847.2026.11745154</a></div></div></li>
+      <li class="row rv" id="c2"><span class="yr">2021</span><div><p class="t">Lightweight Offline Authentication Scheme for Secure Remote Working Environment</p><p class="m"><b>U. Coruh</b>, M. Khan, O. Bayat · <i>International Conference on Electrical, Computer and Energy Technologies (ICECET)</i>, Cape Town, pp. 1–9</p><div class="ids"><span class="tag k">CPCI</span><a class="id" href="https://doi.org/10.1109/ICECET52533.2021.9698586" target="_blank" rel="noopener">doi:10.1109/ICECET52533.2021.9698586</a></div></div></li>
+      <li class="row rv" id="c3"><span class="yr">2020</span><div><p class="t">Performance Analysis of Blockchain-Based Systems for Industry Applications</p><p class="m">M. Khan, O. Bayat, <b>U. Coruh</b> · <i>ICEMIS'20, 6th International Conference on Engineering &amp; MIS</i> (ACM)</p><div class="ids"><span class="tag">Scopus</span><a class="id" href="https://doi.org/10.1145/3410352.3410836" target="_blank" rel="noopener">doi:10.1145/3410352.3410836</a></div></div></li>
+    </ul>
+
+    <h3 class="lbl" id="pub-b"><span class="en">Book chapters</span><span class="tr">Kitap bölümleri</span></h3>
+    <ul class="rows">
+      <li class="row rv"><span class="yr">2021</span><div><p class="t" lang="tr">Sağlık Hizmetlerindeki IoT Teknolojilerinin Güvenlik Riskleri ve Alınabilecek Tedbirler</p><p class="m"><b>U. Coruh</b> · <i lang="tr">Sağlıkta Yapay Zeka ve Uygulamaları</i>, Akademisyen Kitabevi, pp. 41–52</p><div class="ids"><span class="id">ISBN 978-625-7354-94-3</span></div></div></li>
+      <li class="row rv"><span class="yr">2021</span><div><p class="t" lang="tr">Sağlık Hizmetlerinde 5G Dönemi</p><p class="m"><b>U. Coruh</b> · <i lang="tr">Sağlıkta Yapay Zeka ve Uygulamaları</i>, Akademisyen Kitabevi, pp. 389–396</p><div class="ids"><span class="id">ISBN 978-625-7354-94-3</span></div></div></li>
+    </ul>
+
+    <h3 class="lbl" id="pub-t"><span class="en">Theses</span><span class="tr">Tezler</span></h3>
+    <ul class="rows">
+      <li class="row rv" id="t1"><span class="yr">2019</span><div><p class="t">Enhanced Secure Communication Schemes for Machine-to-Machine and Vehicular Ad Hoc Networks</p><p class="m"><span class="en">PhD thesis, Altınbaş University</span><span class="tr">Doktora tezi, Altınbaş Üniversitesi</span></p><div class="ids"><span class="tag">No. 611232</span><a class="id" href="https://tez.yok.gov.tr/UlusalTezMerkezi/tarama.jsp" target="_blank" rel="noopener"><span class="en">YÖK Thesis Center</span><span class="tr">YÖK Tez Merkezi</span> ↗</a></div></div></li>
+      <li class="row rv" id="t2"><span class="yr">2014</span><div><p class="t" lang="tr">SRAM Tabanlı FPGA Devrelerinde LUT Seviyesinde Fonksiyonlar Arasındaki NPN İlişkilerin Maksimize Edilmesi</p><p class="m"><span class="en">MSc thesis, Istanbul Kemerburgaz University (now Altınbaş University)</span><span class="tr">Yüksek lisans tezi, İstanbul Kemerburgaz Üniversitesi (bugün Altınbaş Üniversitesi)</span></p><div class="ids"><span class="tag">No. 372476</span><a class="id" href="https://tez.yok.gov.tr/UlusalTezMerkezi/tarama.jsp" target="_blank" rel="noopener"><span class="en">YÖK Thesis Center</span><span class="tr">YÖK Tez Merkezi</span> ↗</a></div></div></li>
+    </ul>
+  </div>
+</div></section>
+
+<section id="projects" class="sec"><div class="wrap sg">
+  <div class="sh"><div class="shi">
+    <p class="lbl"><span class="en">Funded</span><span class="tr">Destekli</span></p>
+    <h2><span class="en">Research projects</span><span class="tr">Araştırma projeleri</span></h2>
+    <p class="lead"><span class="en">Funded projects as principal investigator, researcher or advisor.</span><span class="tr">Yürütücü, araştırmacı ya da danışman olarak yer aldığım destekli projeler.</span></p>
+  </div></div>
+  <div class="sb">
+    <ul class="rows">
+      <li class="row rv" id="p1"><span class="yr">2024–25</span><div><p class="t"><span class="en">Secure and Fast Authorization, Asymmetric Key Renewal and Revocation for ITS/C-ITS in V2X/C-V2X Communication Architecture</span><span class="tr">V2X/C-V2X Haberleşme Mimarisinde ITS/C-ITS için Güvenli ve Hızlı Yetkilendirme, Asimetrik Anahtar Yenileme ve İptal Etme</span></p><p class="m"><span class="en">Principal investigator · TÜBİTAK TEYDEB 1507 · Coruh Arge</span><span class="tr">Yürütücü · TÜBİTAK TEYDEB 1507 · Coruh Arge</span></p><div class="ids"><span class="tag k">TÜBİTAK</span><span class="id">7230092</span></div></div></li>
+      <li class="row rv" id="p2"><span class="yr">2023–24</span><div><p class="t"><span class="en">Secure Asymmetric Key Renewal and Revocation for eSIM/SIM in 5G/6G Communication Networks</span><span class="tr">5G/6G Haberleşme Ağlarında eSIM/SIM için Güvenli Asimetrik Anahtar Yenileme ve İptal Etme</span></p><p class="m"><span class="en">Principal investigator · TÜBİTAK TEYDEB 1507 · Coruh Arge</span><span class="tr">Yürütücü · TÜBİTAK TEYDEB 1507 · Coruh Arge</span></p><div class="ids"><span class="tag k">TÜBİTAK</span><span class="id">7220514</span></div></div></li>
+      <li class="row rv" id="p3"><span class="yr">2025–</span><div><p class="t"><span class="en">Effects of Production Parameters on the Mechanical and Machinability Properties of Composite Pipes</span><span class="tr">Kompozit Boruların Üretim Parametrelerinin Mekanik ve İşlenebilirlik Özellikleri Üzerindeki Etkileri</span></p><p class="m"><span class="en">Researcher (AI-assisted damage analysis) · RTEÜ BAP</span><span class="tr">Araştırmacı (yapay zekâ destekli hasar analizi) · RTEÜ BAP</span></p><div class="ids"><span class="tag">BAP</span><span class="id">FBA-2025-2039</span></div></div></li>
+      <li class="row rv" id="p4"><span class="yr">2025</span><div><p class="t"><span class="en">Autonomous Turret System · Visual Support and Security Algorithm for Autonomous Aerial Vehicles (TEKNOFEST)</span><span class="tr">Otonom Taret Sistemi · Otonom Hava Araçları için Görsel Destek ve Güvenlik Algoritması (TEKNOFEST)</span></p><p class="m"><span class="en">Principal investigator · RTEÜ BAP student-participated projects</span><span class="tr">Yürütücü · RTEÜ BAP öğrenci katılımlı projeler</span></p><div class="ids"><span class="tag">BAP</span><span class="id">FLO-2025-1973</span><span class="id">FLO-2025-1974</span></div></div></li>
+      <li class="row rv" id="p5"><span class="yr">2021–22</span><div><p class="t"><span class="en">High-Performance, Side-Channel-Resistant Hardware Implementations of Cryptographic Algorithms Used in 5G Cellular Networks</span><span class="tr">5G Hücresel Haberleşme Sistemlerinde Kullanılan Kriptografik Algoritmaların Yüksek Performanslı ve Yan Kanal Ataklarına Dayanıklı Donanım Gerçeklemeleri</span></p><p class="m"><span class="en">Academic advisor · TÜBİTAK TEYDEB 1501 · Procenne</span><span class="tr">Akademik danışman · TÜBİTAK TEYDEB 1501 · Procenne</span></p><div class="ids"><span class="tag k">TÜBİTAK</span><span class="id">3210293</span></div></div></li>
+      <li class="row rv" id="p6"><span class="yr">2010–20</span><div><p class="t"><span class="en">Industrial R&amp;D at Paycore: VISCA (ITEA 3), SOLOMON (ITEA 3), TSMxpert mobile payment TSM/OTA platform, end-to-end smart card production control</span><span class="tr">Paycore'da sanayi Ar-Ge: VISCA (ITEA 3), SOLOMON (ITEA 3), TSMxpert mobil ödeme TSM/OTA platformu, uçtan uca akıllı kart üretim kontrolü</span></p><p class="m"><span class="en">Researcher · TÜBİTAK TEYDEB 1501 / 1509</span><span class="tr">Araştırmacı · TÜBİTAK TEYDEB 1501 / 1509</span></p><div class="ids"><span class="tag k">TÜBİTAK</span><span class="id">9130068</span><span class="id">9170064</span><span class="id">3130074</span><span class="id">3100248</span></div></div></li>
+    </ul>
+    <h3 class="lbl"><span class="en">Student research and competitions</span><span class="tr">Öğrenci projeleri ve yarışmalar</span></h3>
+    <p class="note"><span class="en">Advisor of seven TÜBİTAK 2209-A/B undergraduate research projects (2021–2024) and of TEKNOFEST teams that reached the finals in Smart Transportation, Robotaxi, Turkish NLP, Barrier-Free Living, Pardus and 5G Positioning (2022–2025).</span><span class="tr">Yedi TÜBİTAK 2209-A/B lisans araştırma projesinin (2021–2024) ve Akıllı Ulaşım, Robotaksi, Türkçe Doğal Dil İşleme, Engelsiz Yaşam, Pardus ve 5G Konumlandırma yarışmalarında finale kalan TEKNOFEST takımlarının (2022–2025) danışmanı.</span></p>
+  </div>
+</div></section>
+
+<section id="patents" class="sec"><div class="wrap sg">
+  <div class="sh"><div class="shi">
+    <p class="lbl">TÜRKPATENT</p>
+    <h2><span class="en">Patents</span><span class="tr">Patentler</span></h2>
+    <p class="lead"><span class="en">Turkish Patent and Trademark Office (TÜRKPATENT).</span><span class="tr">Türk Patent ve Marka Kurumu (TÜRKPATENT).</span></p>
+  </div></div>
+  <div class="sb">
+    <div class="plates">
+      <article class="plw rv" id="pt1"><div class="pl"><div class="pl-h"><span class="pn">TR 2023/001074</span><span class="tag k"><span class="en">Granted</span><span class="tr">Tescil</span></span></div><div class="pl-b"><span class="yr">2024</span><p class="t"><span class="en">Key update and revocation method enabling security keys and sensitive data to be updated and revoked over remote secure channels</span><span class="tr">Güvenlik anahtarlarının ve hassas verilerinin uzaktan güvenli kanallar üzerinden güncellenmesini ve iptal edilmesini sağlayan anahtar güncelleme ve iptal etme yöntemi</span></p></div></div></article>
+      <article class="plw rv" id="pt2"><div class="pl"><div class="pl-h"><span class="pn">TR 2023/001121</span><span class="tag"><span class="en">Application</span><span class="tr">Başvuru</span></span></div><div class="pl-b"><span class="yr">2023</span><p class="t"><span class="en">Methods providing rapid authentication and authorization between devices with key update</span><span class="tr">Cihazlar arası hızlı doğrulama ve yetkilendirme ile anahtar güncellemesi sağlayan yöntemler</span></p></div></div></article>
+      <article class="plw rv" id="pt3"><div class="pl"><div class="pl-h"><span class="pn">TR 2021/008173</span><span class="tag k"><span class="en">Granted</span><span class="tr">Tescil</span></span></div><div class="pl-b"><span class="yr">2024</span><p class="t"><span class="en">Electro-uroflowmetry: electrical smart uroflowmetry device and measurement method</span><span class="tr">Elektroüroflowmetri: elektriksel akıllı üroflowmetri cihazı ve ölçümleme yöntemi</span></p><p class="m"><span class="en">with H. Koçan</span><span class="tr">H. Koçan ile</span></p></div></div></article>
+      <article class="plw rv" id="pt4"><div class="pl"><div class="pl-h"><span class="pn">TR 2021/012435</span><span class="tag k"><span class="en">Granted</span><span class="tr">Tescil</span></span></div><div class="pl-b"><span class="yr">2023</span><p class="t"><span class="en">Smart system performing electrical uroflowmetry measurement using Ohm's law (urocystography)</span><span class="tr">Ohm kanunu ile elektriksel üroflovmetri ölçümü yapan akıllı sistem / ürosistografi</span></p><p class="m"><span class="en">with H. Koçan</span><span class="tr">H. Koçan ile</span></p></div></div></article>
+      <article class="plw rv" id="pt5"><div class="pl"><div class="pl-h"><span class="pn">TR 2020/19898</span><span class="tag k"><span class="en">Granted</span><span class="tr">Tescil</span></span></div><div class="pl-b"><span class="yr">2023</span><p class="t"><span class="en">Percutaneous/biopsy needle and guidance analysis system that identifies tissue type from electrical voltage, resistance, capacitance and current measurements using a learned model</span><span class="tr">Elektriksel gerilim, direnç, kapasite ve akım ölçümleri ile geçtiği bölgedeki hücre doku özelliklerini ve türünü oluşturulan model ile tespit eden perkütan/biyopsi iğnesi ve yönlendirme analiz sistemi</span></p><p class="m"><span class="en">with H. Koçan</span><span class="tr">H. Koçan ile</span></p></div></div></article>
+    </div>
+    <h3 class="lbl" id="awards"><span class="en">Awards</span><span class="tr">Ödüller</span></h3>
+    <ul class="rows">
+      <li class="row rv"><span class="yr">2022</span><div><p class="t"><span class="en">TEKNOFEST 2022 Smart Transportation Competition — Third Place</span><span class="tr">TEKNOFEST 2022 Akıllı Ulaşım Yarışması — Üçüncülük Ödülü</span></p><p class="m"><span class="en">Academic advisor of team WHITECODE (AVUS, smart curve warning system) · T3 Foundation</span><span class="tr">WHITECODE takımının akademik danışmanı (AVUS, akıllı viraj uyarı sistemi) · T3 Vakfı</span></p></div></li>
+    </ul>
+  </div>
+</div></section>
+
+<section id="teaching" class="sec"><div class="wrap sg">
+  <div class="sh"><div class="shi">
+    <p class="lbl"><span class="en">Undergraduate</span><span class="tr">Lisans</span></p>
+    <h2><span class="en">Teaching</span><span class="tr">Dersler</span></h2>
+    <p class="lead"><span class="en">Undergraduate courses at the Department of Computer Engineering.</span><span class="tr">Bilgisayar Mühendisliği Bölümünde verdiğim lisans dersleri.</span></p>
+  </div></div>
+  <div class="sb">
+    <ul class="crs">
+      <li class="rv"><span class="c">CEN206</span><span class="n"><span class="en">Object-Oriented Programming</span><span class="tr">Nesne Yönelimli Programlama</span></span></li>
+      <li class="rv"><span class="c">CEN207</span><span class="n"><span class="en">Data Structures</span><span class="tr">Veri Yapıları</span></span></li>
+      <li class="rv"><span class="c">CEN310</span><span class="n"><span class="en">Parallel Programming</span><span class="tr">Paralel Programlama</span></span></li>
+      <li class="rv"><span class="c">CEN429</span><span class="n"><span class="en">Secure Programming</span><span class="tr">Güvenli Programlama</span></span></li>
+      <li class="rv"><span class="c">CEN401 · CEN402</span><span class="n"><span class="en">Graduation Project I–II</span><span class="tr">Bitirme Tezi I–II</span></span></li>
+    </ul>
+  </div>
+</div></section>
+
+<section id="cv" class="sec"><div class="wrap sg">
+  <div class="sh"><div class="shi">
+    <p class="lbl"><span class="en">Curriculum vitae</span><span class="tr">Özgeçmiş</span></p>
+    <h2><span class="en">Experience and education</span><span class="tr">Deneyim ve eğitim</span></h2>
+  </div></div>
+  <div class="sb two">
+    <div>
+      <h3 class="lbl"><span class="en">Experience</span><span class="tr">Deneyim</span></h3>
+      <ul class="tl">
+        <li class="rv"><span class="d">2022 –</span><b>Coruh Arge</b><span class="w"><span class="en">Founder, General Manager</span><span class="tr">Kurucu, Genel Müdür</span></span></li>
+        <li class="rv"><span class="d">2019 –</span><b><span class="en">Recep Tayyip Erdoğan University</span><span class="tr">Recep Tayyip Erdoğan Üniversitesi</span></b><span class="w"><span class="en">Assistant Professor</span><span class="tr">Dr. Öğretim Üyesi</span></span></li>
+        <li class="rv"><span class="d">2019 – 2020</span><b>Vakıfbank</b><span class="w"><span class="en">Senior Specialist, R&amp;D and Innovation</span><span class="tr">Kıdemli Uzman, Ar-Ge ve İnovasyon</span></span></li>
+        <li class="rv"><span class="d">2009 – 2018</span><b>Paycore</b><span class="w"><span class="en">Software Specialist; Head of Investment Incentive Projects (2015–16)</span><span class="tr">Yazılım Uzmanı; Yatırım Teşvik Projeleri Başkanı (2015–16)</span></span></li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="lbl"><span class="en">Education</span><span class="tr">Eğitim</span></h3>
+      <ul class="tl">
+        <li class="rv"><span class="d">2014 – 2019</span><b><span class="en">PhD</span><span class="tr">Doktora</span></b><span class="w"><span class="en">Electrical and Computer Engineering, Altınbaş University</span><span class="tr">Elektrik ve Bilgisayar Mühendisliği, Altınbaş Üniversitesi</span></span></li>
+        <li class="rv"><span class="d">2011 – 2014</span><b><span class="en">MSc</span><span class="tr">Yüksek Lisans</span></b><span class="w"><span class="en">Electrical and Computer Engineering, Altınbaş University</span><span class="tr">Elektrik ve Bilgisayar Mühendisliği, Altınbaş Üniversitesi</span></span></li>
+        <li class="rv"><span class="d">2005 – 2009</span><b><span class="en">BSc</span><span class="tr">Lisans</span></b><span class="w"><span class="en">Computer Engineering, Selçuk University</span><span class="tr">Bilgisayar Mühendisliği, Selçuk Üniversitesi</span></span></li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+</main>
+
+<div class="end deep">
+<svg class="guil g-end" viewBox="-100 -100 200 200" aria-hidden="true"><use href="#guil"/></svg>
+<section id="profiles" class="sec"><div class="wrap sg">
+  <div class="sh"><div class="shi">
+    <p class="lbl"><span class="en">Identifiers</span><span class="tr">Kimlikler</span></p>
+    <h2><span class="en">Profiles</span><span class="tr">Profiller</span></h2>
+  </div></div>
+  <div class="sb pfs">
+    <div class="pf rv"><h3 class="lbl"><span class="en">Research</span><span class="tr">Akademik</span></h3><ul>
+      <li><a href="https://orcid.org/0000-0003-4193-8401" target="_blank" rel="noopener"><span class="ar">ORCID</span><small>0000-0003-4193-8401</small></a></li>
+      <li><a href="https://scholar.google.com/citations?user=KIU4ltMAAAAJ" target="_blank" rel="noopener"><span class="ar">Google Scholar</span></a></li>
+      <li><a href="https://www.webofscience.com/wos/author/record/O-2919-2018" target="_blank" rel="noopener"><span class="ar">Web of Science</span><small>O-2919-2018</small></a></li>
+      <li><a href="https://www.scopus.com/authid/detail.uri?authorId=57218950743" target="_blank" rel="noopener"><span class="ar">Scopus</span><small>57218950743</small></a></li>
+      <li><a href="https://dblp.org/pid/230/0394.html" target="_blank" rel="noopener"><span class="ar">DBLP</span></a></li>
+      <li><a href="https://avesis.erdogan.edu.tr/ugur.coruh" target="_blank" rel="noopener"><span class="ar">AVESİS</span></a></li>
+    </ul></div>
+    <div class="pf rv"><h3 class="lbl"><span class="en">Code</span><span class="tr">Kod</span></h3><ul>
+      <li><a href="https://github.com/ucoruh" target="_blank" rel="noopener"><span class="ar">GitHub</span><small>ucoruh</small></a></li>
+      <li><a href="https://gitlab.com/ugurcoruh" target="_blank" rel="noopener"><span class="ar">GitLab</span></a></li>
+      <li><a href="https://bitbucket.org/ucoruh/" target="_blank" rel="noopener"><span class="ar">Bitbucket</span></a></li>
+      <li><a href="https://hub.docker.com/u/ucoruh" target="_blank" rel="noopener"><span class="ar">Docker Hub</span></a></li>
+      <li><a href="https://codepen.io/ugurcoruh" target="_blank" rel="noopener"><span class="ar">CodePen</span></a></li>
+      <li><a href="https://replit.com/@UgurCORUH" target="_blank" rel="noopener"><span class="ar">Replit</span></a></li>
+      <li><a href="https://www.hackerrank.com/ucoruh" target="_blank" rel="noopener"><span class="ar">HackerRank</span></a></li>
+    </ul></div>
+    <div class="pf rv"><h3 class="lbl"><span class="en">Elsewhere</span><span class="tr">Diğer</span></h3><ul>
+      <li><a href="https://www.linkedin.com/in/ugurcoruh/" target="_blank" rel="noopener"><span class="ar">LinkedIn</span></a></li>
+      <li><a href="https://twitter.com/ugur_coruh_tr" target="_blank" rel="noopener"><span class="ar">X (Twitter)</span></a></li>
+      <li><a href="https://www.coruh.com.tr/" target="_blank" rel="noopener"><span class="ar">Coruh Arge</span><small>coruh.com.tr</small></a></li>
+    </ul></div>
+  </div>
+</div></section>
+<footer><div class="wrap">
+  <p class="fname" data-depth="-.06" aria-hidden="true">Uğur Coruh</p>
+  <p class="micro" aria-hidden="true">UĞUR CORUH · APPLIED CRYPTOGRAPHY · POST-QUANTUM · WHITE-BOX · V2X · ML-KEM · IEEE 1609.2 · </p>
+  <div class="fmeta"><span class="mail">ugur.coruh@erdogan.edu.tr</span><span><span class="en">Last updated November 2026.</span><span class="tr">Son güncelleme: Kasım 2026.</span></span></div>
+</div></footer>
+</div>
+</div>
+
+<script>
+(function(){
+  var d=document,w=window,root=d.documentElement,site=d.getElementById('site');
+  function all(s,c){return [].slice.call((c||site).querySelectorAll(s))}
+  function clamp(v,a,b){return v<a?a:v>b?b:v}
+  function mm(q){return w.matchMedia?w.matchMedia(q):{matches:false}}
+  var raf=w.requestAnimationFrame?function(f){return w.requestAnimationFrame(f)}:function(f){return setTimeout(function(){f(Date.now())},16)};
+
+  /* language */
+  all('.en').forEach(function(e){e.lang='en'});
+  all('.tr').forEach(function(e){e.lang='tr'});
+  function set(l){
+    site.setAttribute('data-l',l);
+    root.lang=l;
+    d.getElementById('b-en').setAttribute('aria-pressed', l==='en');
+    d.getElementById('b-tr').setAttribute('aria-pressed', l==='tr');
+    try{localStorage.setItem('uc-lang',l)}catch(e){}
+    raf(measure);
+  }
+  var saved=null; try{saved=localStorage.getItem('uc-lang')}catch(e){}
+  all('.lang button').forEach(function(b){b.addEventListener('click',function(){set(b.getAttribute('data-set'))})});
+
+  /* security-print ornaments: one guilloche rosette (reused via <use>) and microprint lines */
+  (function(){
+    var g=d.getElementById('guil');if(!g)return;
+    var h='',k,a,t,r,p;
+    for(k=0;k<10;k++){p=[];
+      for(a=0;a<=360;a+=2){t=a*Math.PI/180;r=70+18*Math.sin(9*t+k*.628)+8*Math.cos(27*t-k*.3);p.push((r*Math.cos(t)).toFixed(1)+' '+(r*Math.sin(t)).toFixed(1))}
+      h+='<path d="M'+p.join('L')+'Z"/>';
+    }
+    try{g.innerHTML=h}catch(e){}
+  })();
+  all('.micro').forEach(function(m){var s=m.textContent,o='';for(var i=0;i<14;i++)o+=s;m.textContent=o});
+
+  /* motion state */
+  var still=mm('(prefers-reduced-motion: reduce)'),fine=mm('(pointer:fine)').matches,dark=mm('(prefers-color-scheme: dark)');
+  var hero=d.getElementById('top'),story=d.getElementById('research'),chs=all('.ch',story),ghs=all('.gh',story),ticks=all('.rail button',story),
+      fill=story.querySelector('.rail i'),gst=story.querySelector('.g-st'),bar=d.getElementById('prog'),plate=d.getElementById('plate'),
+      par=all('[data-depth]'),geo=[],vh=0,docH=0,pinned=false,sTop=0,sLen=1,cur=-1,queued=false,running=false,tilt=null,N=chs.length,
+      glr=null,glSize=null,glTheme=null,heroVis=true,tx=0,ty=0,mx=0,my=0;
+  function se(){return d.scrollingElement||root}
+  function scrolls(){return se().scrollHeight-w.innerHeight>240&&w.innerHeight<=1200}
+  function isDark(){return parseFloat(w.getComputedStyle(site).getPropertyValue('--dk'))>0}
+
+  function measure(){
+    vh=w.innerHeight;
+    var ok=!still.matches&&scrolls()&&w.innerWidth>=900&&vh>=600;
+    if(ok)story.style.setProperty('--vh',vh+'px');
+    if(ok!==pinned){
+      pinned=ok;story.classList.toggle('pin',ok);cur=-1;
+      if(!ok){chs.forEach(function(c){c.classList.remove('on')});ghs.forEach(function(g){g.style.transform=''});if(gst)gst.style.transform=''}
+    }
+    var y=w.pageYOffset||0;
+    geo=par.map(function(el){
+      el.style.transform='';
+      var r=el.getBoundingClientRect();
+      return {el:el,base:Math.max(0,r.top+y-vh),k:parseFloat(el.getAttribute('data-depth'))||0};
+    });
+    var r=story.getBoundingClientRect();sTop=r.top+y;sLen=Math.max(1,r.height-vh);
+    docH=se().scrollHeight-vh;
+    if(!scrolls())all('.pre').forEach(function(e){e.classList.remove('pre')});
+    if(glSize)glSize();
+    frame();start();
+  }
+  function frame(){
+    queued=false;
+    var y=w.pageYOffset||0,i,g;
+    if(!still.matches){
+      for(i=0;i<geo.length;i++){g=geo[i];g.el.style.transform='translate3d(0,'+clamp((y-g.base)*g.k,-80,80).toFixed(1)+'px,0)'}
+    }
+    if(bar)bar.style.transform='scaleX('+(docH>0?clamp(y/docH,0,1):0).toFixed(4)+')';
+    if(pinned){
+      var p=clamp((y-sTop)/sLen,0,1),n=Math.min(N-1,Math.floor(p*N));
+      if(n!==cur){cur=n;
+        chs.forEach(function(c,j){c.classList.toggle('on',j===n)});
+        ticks.forEach(function(t,j){t.setAttribute('aria-current',j===n?'true':'false')});
+      }
+      if(fill)fill.style.transform='scaleX('+p.toFixed(4)+')';
+      if(gst)gst.style.transform='rotate('+(p*50).toFixed(2)+'deg)';
+      for(i=0;i<ghs.length;i++)ghs[i].style.transform='translate3d('+((.5-p)*14).toFixed(2)+'%,0,0)';
+    }
+    if(tilt&&plate){plate.style.transform=tilt.on?'rotateX('+tilt.x.toFixed(2)+'deg) rotateY('+tilt.y.toFixed(2)+'deg)':'';tilt=null}
+  }
+  /* the single rAF loop: scroll work when queued, WebGL while the hero is on screen and the tab is visible */
+  function tick(t){
+    running=false;
+    if(queued)frame();
+    if(glr&&heroVis&&!d.hidden){glr(t);start()}
+  }
+  function start(){if(!running){running=true;raf(tick)}}
+  function req(){queued=true;start()}
+  var rz=0;
+  function onResize(){clearTimeout(rz);rz=setTimeout(function(){draw();measure()},120)}
+  w.addEventListener('scroll',req,{passive:true});
+  w.addEventListener('resize',onResize,{passive:true});
+  w.addEventListener('load',function(){draw();measure()});
+  d.addEventListener('visibilitychange',start);
+  if(d.fonts&&d.fonts.ready&&d.fonts.ready.then)d.fonts.ready.then(function(){draw();measure()});
+
+  all('details').forEach(function(x){x.addEventListener('toggle',function(){raf(measure)})});
+  ticks.forEach(function(t,j){t.addEventListener('click',function(){
+    if(pinned)w.scrollTo(0,Math.round(sTop+(j+.5)/N*sLen));
+  })});
+
+  /* pointer: lattice steering, portrait tilt (max 6 deg), hologram plates (max 5 deg), magnetic links */
+  if(fine){
+    hero.addEventListener('pointermove',function(e){
+      if(still.matches)return;
+      tx=e.clientX/w.innerWidth-.5;ty=e.clientY/w.innerHeight-.5;
+      if(plate){var r=plate.getBoundingClientRect();
+        tilt={on:true,y:clamp((e.clientX-(r.left+r.width/2))/w.innerWidth*14,-6,6),x:clamp(-(e.clientY-(r.top+r.height/2))/w.innerHeight*10,-5,5)}}
+      req();
+    },{passive:true});
+    hero.addEventListener('pointerleave',function(){tx=0;ty=0;tilt={on:false};req()},{passive:true});
+    all('.pl').forEach(function(c){
+      c.addEventListener('pointermove',function(e){
+        var r=c.getBoundingClientRect(),fx=(e.clientX-r.left)/r.width,fy=(e.clientY-r.top)/r.height;
+        c.style.setProperty('--x',(fx*100).toFixed(1)+'%');c.style.setProperty('--y',(fy*100).toFixed(1)+'%');c.style.setProperty('--a',(fx*240).toFixed(0)+'deg');
+        if(!still.matches)c.style.transform='rotateX('+((.5-fy)*8).toFixed(2)+'deg) rotateY('+((fx-.5)*10).toFixed(2)+'deg) translateZ(8px)';
+      },{passive:true});
+      c.addEventListener('pointerleave',function(){c.style.transform=''},{passive:true});
+    });
+    all('.quick a').forEach(function(a){
+      a.addEventListener('pointermove',function(e){
+        if(still.matches)return;
+        var r=a.getBoundingClientRect();
+        a.style.transform='translate3d('+((e.clientX-r.left-r.width/2)*.22).toFixed(1)+'px,'+((e.clientY-r.top-r.height/2)*.32).toFixed(1)+'px,0)';
+      },{passive:true});
+      a.addEventListener('pointerleave',function(){a.style.transform=''},{passive:true});
+    });
+  }
+
+  /* 2D fallback (no WebGL or reduced motion): two-plane lattice with the basis b1, b2 */
+  function draw(){
+    if(site.classList.contains('gl'))return;
+    var cs=w.getComputedStyle(site),ink=cs.getPropertyValue('--acc').trim()||'#2233e6',acc=cs.getPropertyValue('--hot').trim()||'#b84a00';
+    ['lat-far','lat-near'].forEach(function(id,near){
+      var c=d.getElementById(id);if(!c||!c.getContext)return;
+      var W=c.offsetWidth,H=c.offsetHeight;if(!W||!H)return;
+      var dpr=Math.min(2,w.devicePixelRatio||1),x=c.getContext('2d');
+      c.width=Math.round(W*dpr);c.height=Math.round(H*dpr);x.setTransform(dpr,0,0,dpr,0,0);x.clearRect(0,0,W,H);
+      var s=near?96:48,ax=s,ay=-s*.2,bx=s*.44,by=s*.88,ox=W*(W>900?.6:.72),oy=H*.52,R=Math.max(W,H)*.8,n=Math.ceil(R/s)+3,i,j,px,py,a;
+      x.fillStyle=ink;
+      for(i=-n;i<=n;i++)for(j=-n;j<=n;j++){
+        px=ox+i*ax+j*bx;py=oy+i*ay+j*by;
+        if(px<-4||py<-4||px>W+4||py>H+4)continue;
+        a=1-Math.sqrt((px-ox)*(px-ox)+(py-oy)*(py-oy))/R;if(a<=0)continue;
+        x.globalAlpha=a*(near?.6:.34);x.beginPath();x.arc(px,py,near?2:1.1,0,6.2832);x.fill();
+      }
+      if(near){
+        x.fillStyle=acc;x.strokeStyle=acc;x.lineWidth=1.5;
+        x.globalAlpha=.12;x.beginPath();x.moveTo(ox,oy);x.lineTo(ox+ax,oy+ay);x.lineTo(ox+ax+bx,oy+ay+by);x.lineTo(ox+bx,oy+by);x.closePath();x.fill();
+        x.globalAlpha=.85;
+        [[ax,ay,'b₁'],[bx,by,'b₂']].forEach(function(v){
+          var ex=ox+v[0],ey=oy+v[1],t=Math.atan2(v[1],v[0]);
+          x.beginPath();x.moveTo(ox,oy);x.lineTo(ex,ey);x.stroke();
+          x.beginPath();x.moveTo(ex,ey);x.lineTo(ex-9*Math.cos(t-.4),ey-9*Math.sin(t-.4));x.lineTo(ex-9*Math.cos(t+.4),ey-9*Math.sin(t+.4));x.closePath();x.fill();
+          x.font='11px ui-monospace,Consolas,monospace';x.fillText(v[2],ex+8,ey+4);
+        });
+        x.globalAlpha=1;
+      }
+    });
+  }
+
+  /* WebGL: a 3D point lattice (skewed basis b1,b2,b3) inside a sphere, with the fundamental cell drawn in the hot colour */
+  function initGL(){
+    var c=d.getElementById('gl');if(!c||still.matches)return;
+    var gl=null;try{gl=c.getContext('webgl',{alpha:true,antialias:true,powerPreference:'low-power'})}catch(e){}
+    if(!gl)return;
+    function sh(t,s){var o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);return gl.getShaderParameter(o,gl.COMPILE_STATUS)?o:null}
+    var v=sh(gl.VERTEX_SHADER,'attribute vec3 p;attribute float h;uniform vec2 r;uniform float s,pt,e;uniform vec3 ca,cb,cc;varying vec4 v;varying float k;'+
+      'void main(){vec3 p0=p*(1.+(1.-e)*(.3+1.3*fract(sin(dot(p,vec3(12.9,78.2,37.7)))*43758.5)));float cy=cos(r.y),sy=sin(r.y),cx=cos(r.x),sx=sin(r.x);vec3 q=vec3(p0.x*cy+p0.z*sy,p0.y,p0.z*cy-p0.x*sy);q=vec3(q.x,q.y*cx-q.z*sx,q.y*sx+q.z*cx);'+
+      'float z=max(.4,3.2-q.z);gl_Position=vec4(q.x*2.05,q.y*2.05,0.,z);float t=clamp(q.z*.5+.5,0.,1.);'+
+      'vec3 col=mix(mix(ca,cb,clamp(p.y*.5+.5,0.,1.)),cc,h);v=vec4(col,(.18+.82*t*t)*mix((.3+.6*h)*smoothstep(.55,1.,e),e,pt);k=pt;gl_PointSize=s*(.5+h*1.2)/z;}'),
+        f=sh(gl.FRAGMENT_SHADER,'precision mediump float;varying vec4 v;varying float k;void main(){float a=v.a;if(k>.5){a*=smoothstep(.5,.3,length(gl_PointCoord-.5));}gl_FragColor=vec4(v.rgb*a,a);}');
+    if(!v||!f)return;
+    var pr=gl.createProgram();gl.attachShader(pr,v);gl.attachShader(pr,f);gl.linkProgram(pr);
+    if(!gl.getProgramParameter(pr,gl.LINK_STATUS))return;
+    gl.useProgram(pr);
+    var B=[[1,0,.16],[.36,.94,0],[.12,.3,.9]],S=.2,P=[],L=[],i,j,k,q;
+    function pt(a,b,c){return [(a*B[0][0]+b*B[1][0]+c*B[2][0])*S,(a*B[0][1]+b*B[1][1]+c*B[2][1])*S,(a*B[0][2]+b*B[1][2]+c*B[2][2])*S]}
+    function cell(n){return n===0||n===2}
+    for(i=-7;i<=7;i++)for(j=-7;j<=7;j++)for(k=-7;k<=7;k++){
+      q=pt(i,j,k);if(q[0]*q[0]+q[1]*q[1]+q[2]*q[2]>1.08)continue;
+      P.push(q[0],q[1],q[2],cell(i)&&cell(j)&&cell(k)?1:0);
+    }
+    function ln(a,b,h){var m=pt(a[0],a[1],a[2]),n=pt(b[0],b[1],b[2]);L.push(m[0],m[1],m[2],h,n[0],n[1],n[2],h)}
+    [0,2].forEach(function(a){[0,2].forEach(function(b){ln([0,a,b],[2,a,b],1);ln([a,0,b],[a,2,b],1);ln([a,b,0],[a,b,2],1)})});
+    ln([-5,0,0],[5,0,0],0);ln([0,-5,0],[0,5,0],0);ln([0,0,-5],[0,0,5],0);
+    var bp=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,bp);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(P),gl.STATIC_DRAW);
+    var bl=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,bl);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(L),gl.STATIC_DRAW);
+    var aP=gl.getAttribLocation(pr,'p'),aH=gl.getAttribLocation(pr,'h'),U=function(n){return gl.getUniformLocation(pr,n)},
+        uR=U('r'),uS=U('s'),uPt=U('pt'),uE=U('e'),t0=0,uA=U('ca'),uB=U('cb'),uC=U('cc');
+    gl.enableVertexAttribArray(aP);gl.enableVertexAttribArray(aH);
+    gl.disable(gl.DEPTH_TEST);gl.enable(gl.BLEND);gl.clearColor(0,0,0,0);
+    glSize=function(){
+      var W=c.clientWidth,H=c.clientHeight,dp=Math.min(2,w.devicePixelRatio||1);if(!W||!H)return;
+      var pw=Math.round(W*dp),ph=Math.round(H*dp);
+      if(c.width!==pw||c.height!==ph){c.width=pw;c.height=ph}
+      gl.viewport(0,0,pw,ph);gl.uniform1f(uS,ph/58);
+    };
+    glTheme=function(){
+      if(isDark()){gl.uniform3f(uA,.62,.68,1);gl.uniform3f(uB,.29,.36,1);gl.uniform3f(uC,1,.48,.1);gl.blendFunc(gl.ONE,gl.ONE)}
+      else{gl.uniform3f(uA,.36,.43,1);gl.uniform3f(uB,.13,.2,.9);gl.uniform3f(uC,.9,.38,0);gl.blendFunc(gl.ONE,gl.ONE_MINUS_SRC_ALPHA)}
+    };
+    function bind(b){gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.vertexAttribPointer(aP,3,gl.FLOAT,false,16,0);gl.vertexAttribPointer(aH,1,gl.FLOAT,false,16,12)}
+    glr=function(t){
+      mx+=(tx-mx)*.05;my+=(ty-my)*.05;
+      var y=w.pageYOffset||0;
+      gl.clear(gl.COLOR_BUFFER_BIT);
+      if(!t0)t0=t;
+      var u=clamp((t-t0)/1300,0,1),e=1-Math.pow(1-u,3);
+      gl.uniform1f(uE,e);
+      gl.uniform2f(uR,.42+my*.5+y*.0009+(1-e)*.9,t*.00011+mx*.8+y*.0013-(1-e)*2.6);
+      gl.uniform1f(uPt,0);bind(bl);gl.drawArrays(gl.LINES,0,L.length/4);
+      gl.uniform1f(uPt,1);bind(bp);gl.drawArrays(gl.POINTS,0,P.length/4);
+    };
+    c.addEventListener('webglcontextlost',function(e){e.preventDefault();glr=glSize=glTheme=null;site.classList.remove('gl');draw()});
+    site.classList.add('gl');glSize();glTheme();
+    if('IntersectionObserver' in w)new IntersectionObserver(function(es){heroVis=es[0].isIntersecting;if(heroVis)start()}).observe(hero);
+  }
+  function retheme(){if(glTheme)glTheme();draw();start()}
+  if(dark.addEventListener)dark.addEventListener('change',retheme);
+  if(still.addEventListener)still.addEventListener('change',function(){
+    if(still.matches&&glr){glr=glSize=glTheme=null;site.classList.remove('gl')}
+    draw();measure();
+  });
+
+  /* reveal fallback where scroll-driven animations are missing: only below the fold, only when the page scrolls */
+  var sda=w.CSS&&CSS.supports&&CSS.supports('animation-timeline: view()');
+  if(!sda&&!still.matches&&'IntersectionObserver' in w&&scrolls()){
+    site.classList.add('io');
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.remove('pre');io.unobserve(e.target)}})},{rootMargin:'0px 0px -6% 0px'});
+    all('.rv').forEach(function(e){if(e.getBoundingClientRect().top>w.innerHeight){e.classList.add('pre');io.observe(e)}});
+    setTimeout(function(){if(!scrolls())all('.pre').forEach(function(e){e.classList.remove('pre')})},1500);
+  }
+
+  set(saved || ((navigator.language||'').toLowerCase().indexOf('tr')===0 ? 'tr' : 'en'));
+  try{initGL()}catch(e){glr=glSize=glTheme=null;site.classList.remove('gl')}
+  draw();measure();
+})();
+</script>
+
+</body>
+</html>

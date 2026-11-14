@@ -1,9 +1,0 @@
----
-template: main.html
----
-
-# Yazılım
-
-...
-
-
