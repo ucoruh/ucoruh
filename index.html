@@ -727,16 +727,16 @@ footer{position:relative;padding-block:clamp(40px,6vw,80px) 28px}
   /* language */
   all('.en').forEach(function(e){e.lang='en'});
   all('.tr').forEach(function(e){e.lang='tr'});
-  function set(l){
+  function set(l,keep){
     site.setAttribute('data-l',l);
     root.lang=l;
     d.getElementById('b-en').setAttribute('aria-pressed', l==='en');
     d.getElementById('b-tr').setAttribute('aria-pressed', l==='tr');
-    try{localStorage.setItem('uc-lang',l)}catch(e){}
+    if(keep){try{localStorage.setItem('uc-lang-choice',l)}catch(e){}}
     raf(measure);
   }
-  var saved=null; try{saved=localStorage.getItem('uc-lang')}catch(e){}
-  all('.lang button').forEach(function(b){b.addEventListener('click',function(){set(b.getAttribute('data-set'))})});
+  var saved=null; try{saved=localStorage.getItem('uc-lang-choice')}catch(e){}
+  all('.lang button').forEach(function(b){b.addEventListener('click',function(){set(b.getAttribute('data-set'),true)})});
 
   /* security-print ornaments: one guilloche rosette (reused via <use>) and microprint lines */
   (function(){
@@ -953,7 +953,7 @@ footer{position:relative;padding-block:clamp(40px,6vw,80px) 28px}
     setTimeout(function(){if(!scrolls())all('.pre').forEach(function(e){e.classList.remove('pre')})},1500);
   }
 
-  set(saved || ((navigator.language||'').toLowerCase().indexOf('tr')===0 ? 'tr' : 'en'));
+  set(saved || 'en');
   try{initGL()}catch(e){glr=glSize=glTheme=null;site.classList.remove('gl')}
   draw();measure();
 })();
