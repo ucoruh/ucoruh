@@ -84,8 +84,11 @@ a:hover{text-decoration:underline}
 #site::after{content:"";position:fixed;inset:0;z-index:30;pointer-events:none;opacity:var(--grain);
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .55 0 0 0 1.1 -.05'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .hero,main,.end{position:relative;z-index:1}
+html{scroll-snap-type:y proximity;scroll-padding-top:56px}
+.hero{scroll-margin-top:56px}
+.hero,.sec,.story{scroll-snap-align:start}
 .guil{position:absolute;pointer-events:none;aspect-ratio:1;height:auto}
-.micro{font:500 6px/1 var(--fm);letter-spacing:.22em;white-space:nowrap;overflow:hidden;color:var(--ink2);opacity:.75;margin:0;padding:5px 0;border-top:1px solid var(--line);user-select:none}
+.micro{font:500 10px/1 var(--fm);letter-spacing:.22em;white-space:nowrap;overflow:hidden;color:var(--ink2);opacity:.9;margin:0;padding:9px 0;border-top:1px solid var(--line);user-select:none}
 
 /* labels */
 .lbl{font:500 .72rem/1.4 var(--fm);letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);margin:0}
@@ -118,7 +121,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   -webkit-mask-image:radial-gradient(80% 90% at 0% 0%,#000,transparent 70%);mask-image:radial-gradient(80% 90% at 0% 0%,#000,transparent 70%)}
 /* portrait: a ghosted editorial image dissolved into the hero background (behind lattice and text) */
 .bgp{position:absolute;right:0;top:0;bottom:0;width:56%;margin:0;pointer-events:none}
-.bgp-in{position:absolute;right:5%;top:96px;height:min(80vh,780px);aspect-ratio:720/1280}
+.bgp-in{position:absolute;right:5%;top:4vh;height:min(calc(100svh - 56px - 8vh - 34px),820px);aspect-ratio:720/1280}
 .bgp img{display:block;width:100%;height:100%;object-fit:contain;border-radius:18px;box-shadow:0 30px 60px -24px rgba(11,15,74,.45)}
 .bgp-in::after{content:none}
 .lat{position:absolute;left:0;top:-90px;width:100%;height:calc(100% + 180px);pointer-events:none}
@@ -133,22 +136,22 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .g-hero{right:-270px;bottom:-310px;width:640px;color:var(--acc);opacity:.26}
 .hero .micro{position:absolute;left:0;right:0;bottom:0;z-index:1}
 .hero-g{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"t" "b";row-gap:clamp(28px,4vw,56px);
-  min-height:min(94svh,900px);align-content:center;padding-block:clamp(48px,7vw,96px) clamp(60px,7vw,108px)}
+  min-height:calc(100svh - 56px);align-content:center;row-gap:clamp(14px,3vh,40px);padding-block:3vh calc(32px + 3vh)}
 .hero-t{grid-area:t;min-width:0}
-h1{margin:18px 0 0;font:inherit}
+h1{margin:clamp(6px,1.4vh,18px) 0 0;font:inherit}
 .mk{display:block;overflow:hidden}
 .in{display:block}
 .rank{font:500 .86rem/1.4 var(--fm);letter-spacing:.04em;color:var(--hot)}
-.big{font:700 clamp(3.9rem,17.5vw,14rem)/.84 var(--fd);letter-spacing:-.05em;padding:.1em .04em .22em;margin:-.04em 0 -.2em -.04em}
+.big{font:700 clamp(3.4rem,min(17.5vw,15vh),14rem)/.84 var(--fd);letter-spacing:-.05em;padding:.1em .04em .22em;margin:-.04em 0 -.2em -.04em}
 @supports ((-webkit-background-clip:text) or (background-clip:text)){
   .big.g .in{background:var(--name) 0 0/300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;width:fit-content;padding-right:.06em}
 }
-.thesis{font:500 clamp(1.2rem,2.1vw,1.7rem)/1.3 var(--fd);letter-spacing:-.015em;max-width:31ch;margin:clamp(20px,3vw,36px) 0 0;text-wrap:balance}
+.thesis{font:500 clamp(1.1rem,min(2.1vw,3.1vh),1.7rem)/1.3 var(--fd);letter-spacing:-.015em;max-width:31ch;margin:clamp(10px,2.4vh,36px) 0 0;text-wrap:balance}
 .thesis em{font-style:normal;color:var(--acc)}
 
 /* portrait: duotone print on a foil mat, a real 3D stack (frame behind, smart card in front) */
 .mail{user-select:all;-webkit-user-select:all}
-.hero-b{grid-area:b;max-width:780px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 40px;min-width:0;border-top:1px solid var(--line);padding-top:22px}
+.hero-b{grid-area:b;max-width:780px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(8px,1.6vh,20px) 40px;min-width:0;border-top:1px solid var(--line);padding-top:clamp(10px,2vh,22px)}
 .role b{display:block;font:600 1.02rem/1.3 var(--fd)}
 .role span{color:var(--ink2);font-size:.92rem}
 .cline{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 22px;margin:0;font:400 .78rem/1.5 var(--fm);color:var(--ink2)}
@@ -237,8 +240,8 @@ h3.lbl{margin:56px 0 14px;scroll-margin-top:90px}
 .xl li{padding:9px 0;border-top:1px solid var(--line);font-size:.94rem;line-height:1.45;break-inside:avoid}
 .xp.w .xl{columns:2;column-gap:36px}
 @media (max-width:720px){
-  .bgp{position:relative;width:auto;height:auto;margin:8px 0 28px}
-  .bgp-in{position:relative;right:auto;top:auto;height:auto;width:min(58%,230px);margin:0 auto}
+  .bgp{position:relative;width:auto;height:auto;margin:6px 0 4px}
+  .bgp-in{position:relative;right:auto;top:auto;height:auto;width:min(40%,170px);margin:0 auto}
 }
 @media (hover:hover){.xp:hover{box-shadow:var(--hi),var(--shh)}}
 @media (max-width:640px){.xps{grid-template-columns:minmax(0,1fr)}.xp.w .xl{columns:1}}
@@ -396,6 +399,7 @@ footer{position:relative;padding-block:clamp(40px,6vw,80px) 28px}
     <a href="#publications"><span class="en">Publications</span><span class="tr">Yayınlar</span></a>
     <a href="#projects"><span class="en">Projects</span><span class="tr">Projeler</span></a>
     <a href="#patents"><span class="en">Patents</span><span class="tr">Patentler</span></a>
+    <a href="#awards"><span class="en">Awards</span><span class="tr">Ödüller</span></a>
     <a href="#teaching"><span class="en">Teaching</span><span class="tr">Dersler</span></a>
     <a href="#cv"><span class="en">CV</span><span class="tr">Özgeçmiş</span></a>
     <a href="#profiles"><span class="en">Profiles</span><span class="tr">Profiller</span></a>
@@ -633,7 +637,15 @@ footer{position:relative;padding-block:clamp(40px,6vw,80px) 28px}
       <article class="plw rv" id="pt4"><div class="pl"><div class="pl-h"><span class="pn">TR 2021/012435</span><span class="tag k"><span class="en">Granted</span><span class="tr">Tescil</span></span></div><div class="pl-b"><span class="yr">2023</span><p class="t"><span class="en">Smart system performing electrical uroflowmetry measurement using Ohm's law (urocystography)</span><span class="tr">Ohm kanunu ile elektriksel üroflovmetri ölçümü yapan akıllı sistem / ürosistografi</span></p><p class="m"><span class="en">with H. Koçan</span><span class="tr">H. Koçan ile</span></p></div></div></article>
       <article class="plw rv" id="pt5"><div class="pl"><div class="pl-h"><span class="pn">TR 2020/19898</span><span class="tag k"><span class="en">Granted</span><span class="tr">Tescil</span></span></div><div class="pl-b"><span class="yr">2023</span><p class="t"><span class="en">Percutaneous/biopsy needle and guidance analysis system that identifies tissue type from electrical voltage, resistance, capacitance and current measurements using a learned model</span><span class="tr">Elektriksel gerilim, direnç, kapasite ve akım ölçümleri ile geçtiği bölgedeki hücre doku özelliklerini ve türünü oluşturulan model ile tespit eden perkütan/biyopsi iğnesi ve yönlendirme analiz sistemi</span></p><p class="m"><span class="en">with H. Koçan</span><span class="tr">H. Koçan ile</span></p></div></div></article>
     </div>
-    <h3 class="lbl" id="awards"><span class="en">Awards</span><span class="tr">Ödüller</span></h3>
+  </div>
+</div></section>
+
+<section id="awards" class="sec"><div class="wrap sg">
+  <div class="sh"><div class="shi">
+    <p class="lbl"><span class="en">Recognition</span><span class="tr">Başarılar</span></p>
+    <h2><span class="en">Awards</span><span class="tr">Ödüller</span></h2>
+  </div></div>
+  <div class="sb">
     <ul class="rows">
       <li class="row rv"><span class="yr">2022</span><div><p class="t"><span class="en">TEKNOFEST 2022 Smart Transportation Competition — Third Place</span><span class="tr">TEKNOFEST 2022 Akıllı Ulaşım Yarışması — Üçüncülük Ödülü</span></p><p class="m"><span class="en">Academic advisor of team WHITECODE (AVUS, smart curve warning system) · T3 Foundation</span><span class="tr">WHITECODE takımının akademik danışmanı (AVUS, akıllı viraj uyarı sistemi) · T3 Vakfı</span></p></div></li>
     </ul>
