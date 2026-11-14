@@ -163,7 +163,7 @@ h1{margin:18px 0 0;font:inherit}
 .quick a:hover::after,.pf a:hover .ar::after{transform:translate3d(2px,-2px,0)}
 
 /* sections: sticky head left, content right; each opens with a halftone field */
-.sec{position:relative;padding-block:clamp(72px,10vw,150px);border-bottom:1px solid var(--line)}
+.sec{position:relative;padding-block:clamp(56px,7vw,104px);border-bottom:1px solid var(--line)}
 .sec::before{content:"";position:absolute;right:0;top:0;width:min(46%,560px);height:280px;pointer-events:none;
   background:radial-gradient(circle,var(--dot) 1.1px,transparent 1.7px) 0 0/10px 10px;
   -webkit-mask-image:radial-gradient(90% 100% at 100% 0%,#000,transparent 72%);mask-image:radial-gradient(90% 100% at 100% 0%,#000,transparent 72%)}
@@ -197,6 +197,12 @@ h3.lbl{margin:56px 0 14px;scroll-margin-top:90px}
 /* patents: security-printed plates with a hologram seal; tilt in 3D under the cursor */
 .plates{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:18px}
 .plw{perspective:900px;scroll-margin-top:90px}
+.plw.wide,.plates>.plw:last-child:nth-child(odd){grid-column:1/-1}
+.fam{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 22px}
+.fam li{display:grid;grid-template-columns:3.2rem minmax(0,1fr);gap:2px 10px;padding:9px 0;border-top:1px solid var(--line);font-size:.86rem;line-height:1.4}
+.fam .o{font:600 .72rem/1.6 var(--fm);color:var(--acc);letter-spacing:.06em}
+.fam .n{font:400 .78rem/1.5 var(--fm);color:var(--ink);overflow-wrap:anywhere}
+.fam .s{display:block;color:var(--ink2);font-family:var(--fb,inherit);font-size:.82rem}
 .pl{position:relative;overflow:hidden;height:100%;background:var(--s2);box-shadow:var(--hi),var(--sh);border-radius:7px;transition:transform .35s var(--ease),box-shadow .35s}
 .pl::before{content:"";position:absolute;inset:0;pointer-events:none;background:var(--foil);background-size:300% 300%;background-position:var(--x,50%) var(--y,50%);opacity:.05;transition:opacity .35s}
 .pl::after{content:"";position:absolute;right:16px;bottom:14px;width:42px;height:42px;border-radius:50%;pointer-events:none;
@@ -240,7 +246,14 @@ h3.lbl{margin:56px 0 14px;scroll-margin-top:90px}
 
 .crs li{display:grid;grid-template-columns:minmax(7rem,11rem) minmax(0,1fr);align-items:baseline;gap:6px 16px;padding:18px 0;border-top:1px solid var(--line)}
 .crs .c{font:500 .8rem/1.4 var(--fm);color:var(--acc)}
-.crs .n{font:600 clamp(1.5rem,3.2vw,2.4rem)/1.1 var(--fd);letter-spacing:-.03em;transition:color .25s}
+.crs .n{font:600 clamp(1.15rem,1.9vw,1.5rem)/1.2 var(--fd);letter-spacing:-.02em;transition:color .25s}
+.crs .c small{display:block;color:var(--ink2);font-size:.7rem;margin-top:3px}
+.crs .mt{grid-column:2;display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.crs .mt .tag{font-size:.64rem;padding:4px 6px}
+.crs .mt .lg{border-color:transparent;background:var(--acc-s);color:var(--acc)}
+.crs .mt .nt{border-color:var(--acc);color:var(--acc);font-weight:600}
+.crs .mt .nt:hover{background:var(--acc);color:#fff;text-decoration:none}
+.crs .dp{grid-column:2;color:var(--ink2);font-size:.86rem}
 .crs li:hover .n{color:var(--acc)}
 .two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 48px}
 .two h3.lbl{margin-top:6px}
@@ -248,6 +261,8 @@ h3.lbl{margin:56px 0 14px;scroll-margin-top:90px}
 .tl .d{font:400 .78rem/1.5 var(--fm);color:var(--acc);font-variant-numeric:tabular-nums}
 .tl b{font:600 1.06rem/1.3 var(--fd);display:block}
 .tl .w{color:var(--ink2);font-size:.94rem}
+.tl .x{display:block;color:var(--ink2);font-size:.84rem;margin-top:2px}
+.sg>.ext{grid-column:2;margin-top:8px}
 
 /* research story: stacked by default, pinned stage only when the page really scrolls */
 .story{position:relative;z-index:1;overflow:hidden}
@@ -271,7 +286,7 @@ h3.lbl{margin:56px 0 14px;scroll-margin-top:90px}
 .ch p.x{color:var(--ink2);margin:0;max-width:46ch}
 .ch-r{list-style:none;margin:22px 0 0;padding:0}
 .ch-r li{border-top:1px solid var(--line)}
-.ch-r a{display:grid;grid-template-columns:minmax(0,10.5rem) minmax(0,1fr);gap:4px 14px;padding:11px 0;color:var(--ink);font-size:.92rem;line-height:1.35;transition:color .25s}
+.ch-r a{display:grid;grid-template-columns:minmax(0,13rem) minmax(0,1fr);gap:4px 14px;padding:11px 0;color:var(--ink);font-size:.92rem;line-height:1.35;transition:color .25s}
 .ch-r .id{color:var(--acc)}
 .ch-r a:hover{text-decoration:none;color:var(--hot)}
 .pin{height:calc(var(--vh,100vh)*3.6);overflow:visible} /* sticky needs no clipping ancestor; .stage clips itself */
@@ -292,6 +307,7 @@ h3.lbl{margin:56px 0 14px;scroll-margin-top:90px}
 .pin .ch p.x{font-size:1.1rem}
 .pin .ch-r{margin:0}
 .pin .gh{font-size:clamp(10rem,30vw,26rem);right:-8%;bottom:-3%}
+.pin .gh.gl{font-size:clamp(7rem,17vw,15rem);right:-3%}
 
 /* closing band */
 .end{overflow:hidden}
@@ -301,7 +317,8 @@ h3.lbl{margin:56px 0 14px;scroll-margin-top:90px}
 .pf ul{list-style:none;margin:0;padding:0}
 .pf a{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:11px 0;border-top:1px solid var(--line);color:var(--ink);transition:color .25s}
 .pf a:hover{text-decoration:none;color:var(--acc)}
-.pf small{font:400 .72rem/1.5 var(--fm);color:var(--ink2);overflow-wrap:anywhere;text-align:right;margin-left:auto}
+.pf a{flex-wrap:wrap;justify-content:flex-start}
+.pf small{font:400 .72rem/1.5 var(--fm);color:var(--ink2);overflow-wrap:anywhere;flex-basis:100%;margin-top:-2px}
 footer{position:relative;padding-block:clamp(40px,6vw,80px) 28px}
 .fname{font:700 clamp(3rem,14.5vw,12.5rem)/.84 var(--fd);letter-spacing:-.05em;white-space:nowrap;color:rgba(255,255,255,.12);margin:0 0 clamp(20px,3vw,40px) -.05em;user-select:none}
 @supports (-webkit-text-stroke:1px #000){.fname{color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.42)}}
@@ -314,6 +331,7 @@ footer{position:relative;padding-block:clamp(40px,6vw,80px) 28px}
   .glw{right:-45%;top:-4%;width:130vw}
   .aura{right:-40%;top:0;width:120vw}
   .sg{grid-template-columns:minmax(0,1fr)}
+  .sg>.ext{grid-column:1}
   .shi{position:static}
   .chs{grid-template-columns:minmax(0,1fr)}
   .pfs{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -327,6 +345,8 @@ footer{position:relative;padding-block:clamp(40px,6vw,80px) 28px}
   .hero-b,.ints,.two,.pfs{grid-template-columns:minmax(0,1fr)}
   .row{grid-template-columns:minmax(0,1fr)}
   .crs li{grid-template-columns:minmax(0,1fr)}
+  .crs .mt,.crs .dp{grid-column:1}
+  .fam{grid-template-columns:minmax(0,1fr)}
   .ch{padding:26px 20px 30px}
   .ch-r a{grid-template-columns:minmax(0,1fr)}
   .gh{font-size:5.5rem}
@@ -500,7 +520,7 @@ footer{position:relative;padding-block:clamp(40px,6vw,80px) 28px}
         </ul>
       </article>
       <article class="ch">
-        <span class="gh" aria-hidden="true">ML-KEM</span>
+        <span class="gh gl" aria-hidden="true">ML-KEM</span>
         <div class="ch-a">
           <p class="per">2026</p>
           <h3><span class="en">Post-quantum and white-box cryptography</span><span class="tr">Kuantum sonrası ve beyaz kutu kriptografi</span></h3>
@@ -591,7 +611,8 @@ footer{position:relative;padding-block:clamp(40px,6vw,80px) 28px}
       <li class="row rv" id="p3"><span class="yr">2025–</span><div><p class="t"><span class="en">Effects of Production Parameters on the Mechanical and Machinability Properties of Composite Pipes</span><span class="tr">Kompozit Boruların Üretim Parametrelerinin Mekanik ve İşlenebilirlik Özellikleri Üzerindeki Etkileri</span></p><p class="m"><span class="en">Researcher (AI-assisted damage analysis) · RTEÜ BAP</span><span class="tr">Araştırmacı (yapay zekâ destekli hasar analizi) · RTEÜ BAP</span></p><div class="ids"><span class="tag">BAP</span><span class="id">FBA-2025-2039</span></div></div></li>
       <li class="row rv" id="p4"><span class="yr">2025</span><div><p class="t"><span class="en">Autonomous Turret System · Visual Support and Security Algorithm for Autonomous Aerial Vehicles (TEKNOFEST)</span><span class="tr">Otonom Taret Sistemi · Otonom Hava Araçları için Görsel Destek ve Güvenlik Algoritması (TEKNOFEST)</span></p><p class="m"><span class="en">Principal investigator · RTEÜ BAP student-participated projects</span><span class="tr">Yürütücü · RTEÜ BAP öğrenci katılımlı projeler</span></p><div class="ids"><span class="tag">BAP</span><span class="id">FLO-2025-1973</span><span class="id">FLO-2025-1974</span></div></div></li>
       <li class="row rv" id="p5"><span class="yr">2021–22</span><div><p class="t"><span class="en">High-Performance, Side-Channel-Resistant Hardware Implementations of Cryptographic Algorithms Used in 5G Cellular Networks</span><span class="tr">5G Hücresel Haberleşme Sistemlerinde Kullanılan Kriptografik Algoritmaların Yüksek Performanslı ve Yan Kanal Ataklarına Dayanıklı Donanım Gerçeklemeleri</span></p><p class="m"><span class="en">Academic advisor · TÜBİTAK TEYDEB 1501 · Procenne</span><span class="tr">Akademik danışman · TÜBİTAK TEYDEB 1501 · Procenne</span></p><div class="ids"><span class="tag k">TÜBİTAK</span><span class="id">3210293</span></div></div></li>
-      <li class="row rv" id="p6"><span class="yr">2010–20</span><div><p class="t"><span class="en">Industrial R&amp;D at Paycore: VISCA (ITEA 3), SOLOMON (ITEA 3), TSMxpert mobile payment TSM/OTA platform, end-to-end smart card production control</span><span class="tr">Paycore'da sanayi Ar-Ge: VISCA (ITEA 3), SOLOMON (ITEA 3), TSMxpert mobil ödeme TSM/OTA platformu, uçtan uca akıllı kart üretim kontrolü</span></p><p class="m"><span class="en">Researcher · TÜBİTAK TEYDEB 1501 / 1509</span><span class="tr">Araştırmacı · TÜBİTAK TEYDEB 1501 / 1509</span></p><div class="ids"><span class="tag k">TÜBİTAK</span><span class="id">9130068</span><span class="id">9170064</span><span class="id">3130074</span><span class="id">3100248</span></div></div></li>
+      <li class="row rv" id="p6"><span class="yr">2009–18</span><div><p class="t"><span class="en">Industrial R&amp;D projects at Paycore (Kartek · Cardtek)</span><span class="tr">Paycore'da (Kartek · Cardtek) sanayi Ar-Ge projeleri</span></p><p class="m"><span class="en">Team lead, software and solution architect · TÜBİTAK TEYDEB 1501 / 1509 · ITEA 3 and CELTIC-Plus (EUREKA)</span><span class="tr">Takım lideri, yazılım ve çözüm mimarı · TÜBİTAK TEYDEB 1501 / 1509 · ITEA 3 ve CELTIC-Plus (EUREKA)</span></p><p class="m"><span class="en">ITEA 3: VISCA (virtualization of smart cards), SOLOMON (location-based payment and fraud detection), BaaS (building as a service), IDEA4SWIFT (e-visa and biometric border control), M2MGrids (protocol-independent M2M), SecureGrids (smart grids), EMOSPACES (emotion-aware spaces) · CELTIC-Plus: UPSC (offline phone-to-phone payment over the SIM secure element) · TÜBİTAK: OTA gateway for mobile payment and smart card management.</span><span class="tr">ITEA 3: VISCA (akıllı kartların sanallaştırılması), SOLOMON (konum tabanlı ödeme ve sahtekârlık tespiti), BaaS (hizmet olarak bina), IDEA4SWIFT (e-vize ve biyometrik sınır kontrolü), M2MGrids (protokolden bağımsız M2M), SecureGrids (akıllı şebekeler), EMOSPACES (duygu durumuna duyarlı mekânlar) · CELTIC-Plus: UPSC (SIM güvenli elemanı üzerinden çevrimdışı telefondan telefona ödeme) · TÜBİTAK: mobil ödeme ve akıllı kart yönetimi için OTA ağ geçidi.</span></p><p class="m"><span class="en">Products: L2-certified EMV contact and contactless payment kernels, TSMxpert / NFCxpert TSM–OTA platform, HCE and SoftPOS security certification (white-box cryptography), EMV Analyzer Suite, CAP/DPA OTP and transaction signing, Palmaris card personalization.</span><span class="tr">Ürünler: L2 sertifikalı temaslı ve temassız EMV ödeme çekirdekleri, TSMxpert / NFCxpert TSM–OTA platformu, HCE ve SoftPOS güvenlik sertifikasyonu (beyaz kutu kriptografi), EMV Analyzer Suite, CAP/DPA tek kullanımlık şifre ve işlem imzalama, Palmaris kart kişiselleştirme.</span></p><div class="ids"><span class="tag k">TÜBİTAK</span><span class="id">9130068</span><span class="id">9170064</span><span class="id">3130074</span><span class="id">3100248</span></div></div></li>
+      <li class="row rv" id="p7"><span class="yr">2019</span><div><p class="t"><span class="en">Vakıfbank Mobile POS</span><span class="tr">Vakıfbank Mobil POS</span></p><p class="m"><span class="en">Software and solution architect · Vakıfbank R&amp;D and Innovation · BKM-QR, contactless and OCR-assisted mail-order payments; ICAO 9303 passport and Turkish eID (TCKK) reading and verification</span><span class="tr">Yazılım ve çözüm mimarı · Vakıfbank Ar-Ge ve İnovasyon · BKM-QR, temassız ve OCR destekli mail-order ödeme; ICAO 9303 pasaport ve TCKK kimlik kartı okuma ve doğrulama</span></p></div></li>
     </ul>
     <h3 class="lbl"><span class="en">Student research and competitions</span><span class="tr">Öğrenci projeleri ve yarışmalar</span></h3>
     <p class="note"><span class="en">Advisor of seven TÜBİTAK 2209-A/B undergraduate research projects (2021–2024) and of TEKNOFEST teams that reached the finals in Smart Transportation, Robotaxi, Turkish NLP, Barrier-Free Living, Pardus and 5G Positioning (2022–2025).</span><span class="tr">Yedi TÜBİTAK 2209-A/B lisans araştırma projesinin (2021–2024) ve Akıllı Ulaşım, Robotaksi, Türkçe Doğal Dil İşleme, Engelsiz Yaşam, Pardus ve 5G Konumlandırma yarışmalarında finale kalan TEKNOFEST takımlarının (2022–2025) danışmanı.</span></p>
@@ -602,12 +623,12 @@ footer{position:relative;padding-block:clamp(40px,6vw,80px) 28px}
   <div class="sh"><div class="shi">
     <p class="lbl">TÜRKPATENT</p>
     <h2><span class="en">Patents</span><span class="tr">Patentler</span></h2>
-    <p class="lead"><span class="en">Turkish Patent and Trademark Office (TÜRKPATENT).</span><span class="tr">Türk Patent ve Marka Kurumu (TÜRKPATENT).</span></p>
+    <p class="lead"><span class="en">Five Turkish patents (TÜRKPATENT) and two international families filed through PCT with national phases in the United States, Europe and China.</span><span class="tr">Beş Türkiye patenti (TÜRKPATENT) ve PCT üzerinden ABD, Avrupa ve Çin ulusal aşamalarına girmiş iki uluslararası patent ailesi.</span></p>
   </div></div>
   <div class="sb">
     <div class="plates">
-      <article class="plw rv" id="pt1"><div class="pl"><div class="pl-h"><span class="pn">TR 2023/001074</span><span class="tag k"><span class="en">Granted</span><span class="tr">Tescil</span></span></div><div class="pl-b"><span class="yr">2024</span><p class="t"><span class="en">Key update and revocation method enabling security keys and sensitive data to be updated and revoked over remote secure channels</span><span class="tr">Güvenlik anahtarlarının ve hassas verilerinin uzaktan güvenli kanallar üzerinden güncellenmesini ve iptal edilmesini sağlayan anahtar güncelleme ve iptal etme yöntemi</span></p></div></div></article>
-      <article class="plw rv" id="pt2"><div class="pl"><div class="pl-h"><span class="pn">TR 2023/001121</span><span class="tag"><span class="en">Application</span><span class="tr">Başvuru</span></span></div><div class="pl-b"><span class="yr">2023</span><p class="t"><span class="en">Methods providing rapid authentication and authorization between devices with key update</span><span class="tr">Cihazlar arası hızlı doğrulama ve yetkilendirme ile anahtar güncellemesi sağlayan yöntemler</span></p></div></div></article>
+      <article class="plw rv wide" id="pt1"><div class="pl"><div class="pl-h"><span class="pn">TR 2023/001074 · PCT · US · EP · CN</span><span class="tag k"><span class="en">Granted</span><span class="tr">Tescil</span></span></div><div class="pl-b"><span class="yr">2024</span><p class="t"><span class="en">Key update and revocation method enabling security keys and sensitive data to be updated and revoked over remote secure channels</span><span class="tr">Güvenlik anahtarlarının ve hassas verilerinin uzaktan güvenli kanallar üzerinden güncellenmesini ve iptal edilmesini sağlayan anahtar güncelleme ve iptal etme yöntemi</span></p><p class="m"><span class="en">Sole inventor · Coruh Arge</span><span class="tr">Tek buluşçu · Coruh Arge</span></p><ul class="fam"><li><span class="o">TR</span><span class="n">2023/001074<span class="s"><span class="en">Granted 2024</span><span class="tr">Tescil 2024</span></span></span></li><li><span class="o">PCT</span><span class="n">PCT/TR2023/051716 · WO 2024/162915 A1<span class="s"><span class="en">Published 2024 · IPRP positive</span><span class="tr">Yayın 2024 · IPRP olumlu</span></span></span></li><li><span class="o">US</span><span class="n">19/152,008 · US 2026/0222193 A1<span class="s"><span class="en">Under examination</span><span class="tr">İncelemede</span></span></span></li><li><span class="o">EP</span><span class="n">23920199.9 · EP 4659408<span class="s"><span class="en">Under examination</span><span class="tr">İncelemede</span></span></span></li><li><span class="o">CN</span><span class="n">202380092928.4 · CN 120642293 A<span class="s"><span class="en">Substantive examination</span><span class="tr">Esas incelemede</span></span></span></li></ul></div></div></article>
+      <article class="plw rv wide" id="pt2"><div class="pl"><div class="pl-h"><span class="pn">TR 2023/001121 · PCT · US · EP · CN</span><span class="tag"><span class="en">Application</span><span class="tr">Başvuru</span></span></div><div class="pl-b"><span class="yr">2023</span><p class="t"><span class="en">Methods providing rapid authentication and authorization between devices with key update</span><span class="tr">Cihazlar arası hızlı doğrulama ve yetkilendirme ile anahtar güncellemesi sağlayan yöntemler</span></p><p class="m"><span class="en">Sole inventor · Coruh Arge</span><span class="tr">Tek buluşçu · Coruh Arge</span></p><ul class="fam"><li><span class="o">TR</span><span class="n">2023/001121<span class="s"><span class="en">Application</span><span class="tr">Başvuru</span></span></span></li><li><span class="o">PCT</span><span class="n">PCT/TR2023/051719 · WO 2024/162916 A1<span class="s"><span class="en">Published 2024</span><span class="tr">Yayın 2024</span></span></span></li><li><span class="o">US</span><span class="n">19/152,017 · US 2026/0230336 A1<span class="s"><span class="en">Under examination</span><span class="tr">İncelemede</span></span></span></li><li><span class="o">EP</span><span class="n">23920200.5 · EP 4659410<span class="s"><span class="en">Under examination</span><span class="tr">İncelemede</span></span></span></li><li><span class="o">CN</span><span class="n">202380093003.1 · CN 120642296 A<span class="s"><span class="en">Substantive examination</span><span class="tr">Esas incelemede</span></span></span></li></ul></div></div></article>
       <article class="plw rv" id="pt3"><div class="pl"><div class="pl-h"><span class="pn">TR 2021/008173</span><span class="tag k"><span class="en">Granted</span><span class="tr">Tescil</span></span></div><div class="pl-b"><span class="yr">2024</span><p class="t"><span class="en">Electro-uroflowmetry: electrical smart uroflowmetry device and measurement method</span><span class="tr">Elektroüroflowmetri: elektriksel akıllı üroflowmetri cihazı ve ölçümleme yöntemi</span></p><p class="m"><span class="en">with H. Koçan</span><span class="tr">H. Koçan ile</span></p></div></div></article>
       <article class="plw rv" id="pt4"><div class="pl"><div class="pl-h"><span class="pn">TR 2021/012435</span><span class="tag k"><span class="en">Granted</span><span class="tr">Tescil</span></span></div><div class="pl-b"><span class="yr">2023</span><p class="t"><span class="en">Smart system performing electrical uroflowmetry measurement using Ohm's law (urocystography)</span><span class="tr">Ohm kanunu ile elektriksel üroflovmetri ölçümü yapan akıllı sistem / ürosistografi</span></p><p class="m"><span class="en">with H. Koçan</span><span class="tr">H. Koçan ile</span></p></div></div></article>
       <article class="plw rv" id="pt5"><div class="pl"><div class="pl-h"><span class="pn">TR 2020/19898</span><span class="tag k"><span class="en">Granted</span><span class="tr">Tescil</span></span></div><div class="pl-b"><span class="yr">2023</span><p class="t"><span class="en">Percutaneous/biopsy needle and guidance analysis system that identifies tissue type from electrical voltage, resistance, capacitance and current measurements using a learned model</span><span class="tr">Elektriksel gerilim, direnç, kapasite ve akım ölçümleri ile geçtiği bölgedeki hücre doku özelliklerini ve türünü oluşturulan model ile tespit eden perkütan/biyopsi iğnesi ve yönlendirme analiz sistemi</span></p><p class="m"><span class="en">with H. Koçan</span><span class="tr">H. Koçan ile</span></p></div></div></article>
@@ -623,15 +644,19 @@ footer{position:relative;padding-block:clamp(40px,6vw,80px) 28px}
   <div class="sh"><div class="shi">
     <p class="lbl"><span class="en">Undergraduate</span><span class="tr">Lisans</span></p>
     <h2><span class="en">Teaching</span><span class="tr">Dersler</span></h2>
-    <p class="lead"><span class="en">Undergraduate courses at the Department of Computer Engineering.</span><span class="tr">Bilgisayar Mühendisliği Bölümünde verdiğim lisans dersleri.</span></p>
+    <p class="lead"><span class="en">Undergraduate courses I have taught at Recep Tayyip Erdoğan University since 2020, with their terms and open course notes. Course codes changed with the 2024 curriculum.</span><span class="tr">Recep Tayyip Erdoğan Üniversitesinde 2020'den bu yana verdiğim lisans dersleri, dönemleri ve açık ders notları. Ders kodları 2024 müfredatıyla değişti.</span></p>
   </div></div>
   <div class="sb">
     <ul class="crs">
-      <li class="rv"><span class="c">CEN206</span><span class="n"><span class="en">Object-Oriented Programming</span><span class="tr">Nesne Yönelimli Programlama</span></span></li>
-      <li class="rv"><span class="c">CEN207</span><span class="n"><span class="en">Data Structures</span><span class="tr">Veri Yapıları</span></span></li>
-      <li class="rv"><span class="c">CEN310</span><span class="n"><span class="en">Parallel Programming</span><span class="tr">Paralel Programlama</span></span></li>
-      <li class="rv"><span class="c">CEN429</span><span class="n"><span class="en">Secure Programming</span><span class="tr">Güvenli Programlama</span></span></li>
-      <li class="rv"><span class="c">CEN401 · CEN402</span><span class="n"><span class="en">Graduation Project I–II</span><span class="tr">Bitirme Tezi I–II</span></span></li>
+      <li class="rv"><span class="c">CEN207<small><span class="en">formerly CE205</span><span class="tr">eski kodu CE205</span></small></span><span class="n"><span class="en">Data Structures</span><span class="tr">Veri Yapıları</span></span><span class="mt"><a class="tag nt" href="https://ucoruh.github.io/ce205-data-structures/" target="_blank" rel="noopener"><span class="en">Course notes ↗</span><span class="tr">Ders notları ↗</span></a><span class="tag lg"><span class="en">English</span><span class="tr">İngilizce</span></span><span class="tag">2021–22 <span class="en">Fall</span><span class="tr">Güz</span></span><span class="tag">2022–23 <span class="en">Fall</span><span class="tr">Güz</span></span><span class="tag">2023–24 <span class="en">Fall</span><span class="tr">Güz</span></span><span class="tag">2024–25 <span class="en">Fall</span><span class="tr">Güz</span></span><span class="tag">2025–26 <span class="en">Fall</span><span class="tr">Güz</span></span><span class="tag">2026–27 <span class="en">Fall</span><span class="tr">Güz</span></span></span></li>
+      <li class="rv"><span class="c">CEN206<small><span class="en">formerly CE204</span><span class="tr">eski kodu CE204</span></small></span><span class="n"><span class="en">Object-Oriented Programming</span><span class="tr">Nesne Yönelimli Programlama</span></span><span class="mt"><a class="tag nt" href="https://ucoruh.github.io/ce204-object-oriented-programming/" target="_blank" rel="noopener"><span class="en">Course notes ↗</span><span class="tr">Ders notları ↗</span></a><span class="tag lg"><span class="en">English</span><span class="tr">İngilizce</span></span><span class="tag">2021–22 <span class="en">Spring</span><span class="tr">Bahar</span></span><span class="tag">2022–23 <span class="en">Spring</span><span class="tr">Bahar</span></span><span class="tag">2023–24 <span class="en">Spring</span><span class="tr">Bahar</span></span><span class="tag">2024–25 <span class="en">Spring</span><span class="tr">Bahar</span></span><span class="tag">2025–26 <span class="en">Spring</span><span class="tr">Bahar</span></span></span></li>
+      <li class="rv"><span class="c">CEN429<small><span class="en">formerly CE407</span><span class="tr">eski kodu CE407</span></small></span><span class="n"><span class="en">Secure Programming</span><span class="tr">Güvenli Programlama</span></span><span class="mt"><a class="tag nt" href="https://ucoruh.github.io/cen429-secure-programming/" target="_blank" rel="noopener"><span class="en">Course notes ↗</span><span class="tr">Ders notları ↗</span></a><span class="tag lg"><span class="en">Turkish</span><span class="tr">Türkçe</span></span><span class="tag">2023–24 <span class="en">Fall</span><span class="tr">Güz</span></span><span class="tag">2024–25 <span class="en">Fall</span><span class="tr">Güz</span></span><span class="tag">2025–26 <span class="en">Fall</span><span class="tr">Güz</span></span><span class="tag">2026–27 <span class="en">Fall</span><span class="tr">Güz</span></span></span></li>
+      <li class="rv"><span class="c">CEN310</span><span class="n"><span class="en">Parallel Programming</span><span class="tr">Paralel Programlama</span></span><span class="mt"><a class="tag nt" href="https://ucoruh.github.io/cen310-parallel-programming/" target="_blank" rel="noopener"><span class="en">Course notes ↗</span><span class="tr">Ders notları ↗</span></a><span class="tag lg"><span class="en">English</span><span class="tr">İngilizce</span></span><span class="tag">2024–25 <span class="en">Spring</span><span class="tr">Bahar</span></span></span></li>
+      <li class="rv"><span class="c">CE103<small><span class="en">now CEN107</span><span class="tr">yeni kodu CEN107</span></small></span><span class="n"><span class="en">Algorithms and Programming I</span><span class="tr">Algoritmalar ve Programlama I</span></span><span class="mt"><a class="tag nt" href="https://ucoruh.github.io/ce103-algorithms-and-programming-I/" target="_blank" rel="noopener"><span class="en">Course notes ↗</span><span class="tr">Ders notları ↗</span></a><span class="tag lg"><span class="en">English</span><span class="tr">İngilizce</span></span><span class="tag">2020–21 <span class="en">Fall</span><span class="tr">Güz</span></span><span class="tag">2021–22 <span class="en">Fall</span><span class="tr">Güz</span></span><span class="tag">2022–23 <span class="en">Fall</span><span class="tr">Güz</span></span><span class="tag">2023–24 <span class="en">Fall</span><span class="tr">Güz</span></span></span></li>
+      <li class="rv"><span class="c">CE100<small><span class="en">now CEN108</span><span class="tr">yeni kodu CEN108</span></small></span><span class="n"><span class="en">Algorithms and Programming II</span><span class="tr">Algoritmalar ve Programlama II</span></span><span class="mt"><a class="tag nt" href="https://ucoruh.github.io/ce100-algorithms-and-programming-II/" target="_blank" rel="noopener"><span class="en">Course notes ↗</span><span class="tr">Ders notları ↗</span></a><span class="tag lg"><span class="en">English</span><span class="tr">İngilizce</span></span><span class="tag">2020–21 <span class="en">Spring</span><span class="tr">Bahar</span></span><span class="tag">2021–22 <span class="en">Spring</span><span class="tr">Bahar</span></span><span class="tag">2022–23 <span class="en">Spring</span><span class="tr">Bahar</span></span><span class="tag">2023–24 <span class="en">Spring</span><span class="tr">Bahar</span></span></span></li>
+      <li class="rv"><span class="c">ÜSİ402</span><span class="n"><span class="en">University–Industry Collaboration Experience</span><span class="tr">Üniversite–Sektör İşbirliği Deneyimi</span></span><span class="mt"><span class="tag lg"><span class="en">Turkish</span><span class="tr">Türkçe</span></span><span class="tag">2024–25 <span class="en">Spring</span><span class="tr">Bahar</span></span><span class="tag">2025–26 <span class="en">Spring</span><span class="tr">Bahar</span></span></span></li>
+      <li class="rv"><span class="c">ENF161 · ENF119</span><span class="n"><span class="en">Basic Information Technologies</span><span class="tr">Temel Bilgi Teknolojileri</span></span><span class="dp"><span class="en">Service course: Mechanical, Energy Systems and Electrical-Electronics Engineering</span><span class="tr">Servis dersi: Makine, Enerji Sistemleri ve Elektrik-Elektronik Mühendisliği</span></span><span class="mt"><span class="tag lg"><span class="en">Turkish</span><span class="tr">Türkçe</span></span><span class="tag">2020–21 <span class="en">Fall</span><span class="tr">Güz</span></span><span class="tag">2021–22 <span class="en">Fall</span><span class="tr">Güz</span></span></span></li>
+      <li class="rv"><span class="c">ESM107</span><span class="n"><span class="en">Computer Programming and Software</span><span class="tr">Bilgisayar Programlama ve Yazılım</span></span><span class="dp"><span class="en">Service course: Energy Systems Engineering</span><span class="tr">Servis dersi: Enerji Sistemleri Mühendisliği</span></span><span class="mt"><span class="tag lg"><span class="en">Turkish</span><span class="tr">Türkçe</span></span><span class="tag">2020–21 <span class="en">Fall</span><span class="tr">Güz</span></span></span></li>
     </ul>
   </div>
 </div></section>
@@ -645,18 +670,46 @@ footer{position:relative;padding-block:clamp(40px,6vw,80px) 28px}
     <div>
       <h3 class="lbl"><span class="en">Experience</span><span class="tr">Deneyim</span></h3>
       <ul class="tl">
-        <li class="rv"><span class="d">2022 –</span><b>Coruh Arge</b><span class="w"><span class="en">Founder, General Manager</span><span class="tr">Kurucu, Genel Müdür</span></span></li>
-        <li class="rv"><span class="d">2019 –</span><b><span class="en">Recep Tayyip Erdoğan University</span><span class="tr">Recep Tayyip Erdoğan Üniversitesi</span></b><span class="w"><span class="en">Assistant Professor</span><span class="tr">Dr. Öğretim Üyesi</span></span></li>
-        <li class="rv"><span class="d">2019 – 2020</span><b>Vakıfbank</b><span class="w"><span class="en">Senior Specialist, R&amp;D and Innovation</span><span class="tr">Kıdemli Uzman, Ar-Ge ve İnovasyon</span></span></li>
-        <li class="rv"><span class="d">2009 – 2018</span><b>Paycore</b><span class="w"><span class="en">Software Specialist; Head of Investment Incentive Projects (2015–16)</span><span class="tr">Yazılım Uzmanı; Yatırım Teşvik Projeleri Başkanı (2015–16)</span></span></li>
+        <li class="rv"><span class="d">2022 –</span><b>Coruh Arge</b><span class="w"><span class="en">Founder, General Manager · Dijitalpark Teknokent Rize</span><span class="tr">Kurucu, Genel Müdür · Dijitalpark Teknokent Rize</span></span></li>
+        <li class="rv"><span class="d">2020 –</span><b><span class="en">Recep Tayyip Erdoğan University</span><span class="tr">Recep Tayyip Erdoğan Üniversitesi</span></b><span class="w"><span class="en">Assistant Professor, Department of Computer Engineering</span><span class="tr">Dr. Öğretim Üyesi, Bilgisayar Mühendisliği Bölümü</span></span></li>
+        <li class="rv"><span class="d">2019 – 2020</span><b>Vakıfbank</b><span class="w"><span class="en">Senior Specialist, R&amp;D and Innovation</span><span class="tr">Kıdemli Uzman, Ar-Ge ve İnovasyon</span></span><span class="x"><span class="en">Software architect, security consultant, R&amp;D engineer</span><span class="tr">Yazılım mimarı, güvenlik danışmanı, Ar-Ge mühendisi</span></span></li>
+        <li class="rv"><span class="d">2017 – 2018</span><b>BAYT Teknoloji</b><span class="w"><span class="en">Specialist / Consultant</span><span class="tr">Uzman / Danışman</span></span></li>
+        <li class="rv"><span class="d">2009 – 2018</span><b>Paycore (Kartek · Cardtek)</b><span class="w"><span class="en">Software Specialist → Senior Specialist</span><span class="tr">Yazılım Uzmanı → Kıdemli Uzman</span></span><span class="x"><span class="en">Head of Investment Incentive Projects (2015–16); team lead for ITEA 3 and CELTIC-Plus projects</span><span class="tr">Yatırım Teşvik Projeleri Başkanı (2015–16); ITEA 3 ve CELTIC-Plus projelerinde takım lideri</span></span></li>
+        <li class="rv"><span class="d">2007 – 2008</span><b>Biltekno</b><span class="w"><span class="en">Software Engineer · AI-based recommendation for dynamic e-commerce</span><span class="tr">Yazılım Mühendisi · dinamik e-ticaret için yapay zekâ tabanlı öneri sistemi</span></span></li>
       </ul>
     </div>
     <div>
       <h3 class="lbl"><span class="en">Education</span><span class="tr">Eğitim</span></h3>
       <ul class="tl">
-        <li class="rv"><span class="d">2014 – 2019</span><b><span class="en">PhD</span><span class="tr">Doktora</span></b><span class="w"><span class="en">Electrical and Computer Engineering, Altınbaş University</span><span class="tr">Elektrik ve Bilgisayar Mühendisliği, Altınbaş Üniversitesi</span></span></li>
-        <li class="rv"><span class="d">2011 – 2014</span><b><span class="en">MSc</span><span class="tr">Yüksek Lisans</span></b><span class="w"><span class="en">Electrical and Computer Engineering, Altınbaş University</span><span class="tr">Elektrik ve Bilgisayar Mühendisliği, Altınbaş Üniversitesi</span></span></li>
-        <li class="rv"><span class="d">2005 – 2009</span><b><span class="en">BSc</span><span class="tr">Lisans</span></b><span class="w"><span class="en">Computer Engineering, Selçuk University</span><span class="tr">Bilgisayar Mühendisliği, Selçuk Üniversitesi</span></span></li>
+        <li class="rv"><span class="d">2014 – 2019</span><b><span class="en">PhD</span><span class="tr">Doktora</span></b><span class="w"><span class="en">Electrical and Computer Engineering, Altınbaş University</span><span class="tr">Elektrik ve Bilgisayar Mühendisliği, Altınbaş Üniversitesi</span></span><span class="x"><span class="en">Full scholarship · high honours · GPA 3.86 / 4.00</span><span class="tr">Tam burslu · yüksek onur · not ortalaması 3,86 / 4,00</span></span></li>
+        <li class="rv"><span class="d">2011 – 2014</span><b><span class="en">MSc</span><span class="tr">Yüksek Lisans</span></b><span class="w"><span class="en">Electrical and Computer Engineering, Altınbaş University</span><span class="tr">Elektrik ve Bilgisayar Mühendisliği, Altınbaş Üniversitesi</span></span><span class="x"><span class="en">Full scholarship · ranked first with high honours · GPA 3.79 / 4.00</span><span class="tr">Tam burslu · yüksek onurla birincilik · not ortalaması 3,79 / 4,00</span></span></li>
+        <li class="rv"><span class="d">2005 – 2009</span><b><span class="en">BSc</span><span class="tr">Lisans</span></b><span class="w"><span class="en">Computer Engineering, Selçuk University</span><span class="tr">Bilgisayar Mühendisliği, Selçuk Üniversitesi</span></span><span class="x"><span class="en">Honour and high honour certificates</span><span class="tr">Onur ve yüksek onur belgeleri</span></span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="sb two ext">
+    <div>
+      <h3 class="lbl"><span class="en">Service</span><span class="tr">Görevler</span></h3>
+      <ul class="tl">
+        <li class="rv"><span class="d">2026 –</span><b><span class="en">Department of Computer Engineering</span><span class="tr">Bilgisayar Mühendisliği Bölümü</span></b><span class="w"><span class="en">Chair, Promotion Committee; Chair, Scientific and Social Activities Committee</span><span class="tr">Tanıtım Komisyonu Başkanı; Bilimsel ve Sosyal Etkinlik Komisyonu Başkanı</span></span></li>
+        <li class="rv"><span class="d">2024 – 2025</span><b><span class="en">Department of Computer Engineering</span><span class="tr">Bilgisayar Mühendisliği Bölümü</span></b><span class="w"><span class="en">Chair, Quality and Accreditation Committee</span><span class="tr">Kalite ve Akreditasyon Komisyonu Başkanı</span></span></li>
+        <li class="rv"><span class="d">2020 – 2023</span><b><span class="en">Division of Computer Hardware</span><span class="tr">Bilgisayar Donanımı Anabilim Dalı</span></b><span class="w"><span class="en">Head of Division</span><span class="tr">Anabilim Dalı Başkanı</span></span></li>
+        <li class="rv"><span class="d"></span><b><span class="en">Graduate School, RTEÜ</span><span class="tr">Lisansüstü Eğitim Enstitüsü, RTEÜ</span></b><span class="w"><span class="en">Member, doctoral thesis monitoring committee</span><span class="tr">Doktora tez izleme komitesi üyesi</span></span></li>
+        <li class="rv"><span class="d"></span><b>Wiley</b><span class="w"><span class="en">Reviewer, International Journal of Communication Systems</span><span class="tr">Hakem, International Journal of Communication Systems</span></span></li>
+        <li class="rv"><span class="d">2015 – 2016</span><b>EUREKA EUROGIA2020</b><span class="w"><span class="en">Technical Committee Member</span><span class="tr">Teknik Komite Üyesi</span></span></li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="lbl"><span class="en">Languages</span><span class="tr">Yabancı dil</span></h3>
+      <ul class="tl">
+        <li class="rv"><span class="d">2024</span><b><span class="en">English</span><span class="tr">İngilizce</span></b><span class="w"><span class="en">YÖKDİL 73.75 · fluent written and spoken (CEFR B2 certificate)</span><span class="tr">YÖKDİL 73,75 · yazılı ve sözlü akıcı (CEFR B2 sertifikası)</span></span></li>
+      </ul>
+      <h3 class="lbl"><span class="en">Certificates</span><span class="tr">Sertifikalar</span></h3>
+      <ul class="tl">
+        <li class="rv"><span class="d">2024</span><b>IP Commercialization in Academia – Scale Up Your IP</b><span class="w"><span class="en">Karadeniz Technical University</span><span class="tr">Karadeniz Teknik Üniversitesi</span></span></li>
+        <li class="rv"><span class="d">2015</span><b>IEEEXtreme Programming Competition 9.0</b><span class="w"><span class="en">Participant</span><span class="tr">Katılımcı</span></span></li>
+        <li class="rv"><span class="d">2009</span><b>Oracle RAC – Deep Dive 4 Developers</b><span class="w">Oracle Partner Academy</span></li>
+        <li class="rv"><span class="d">2008</span><b><span class="en">R&amp;D project preparation and management; intellectual and industrial property rights</span><span class="tr">KOBİ'lerde Ar-Ge projesi hazırlama ve yönetme; fikrî ve sınai mülkiyet hakları</span></b><span class="w">KOSGEB Selçuk TEKMER</span></li>
       </ul>
     </div>
   </div>
@@ -848,18 +901,6 @@ footer{position:relative;padding-block:clamp(40px,6vw,80px) 28px}
         if(px<-4||py<-4||px>W+4||py>H+4)continue;
         a=1-Math.sqrt((px-ox)*(px-ox)+(py-oy)*(py-oy))/R;if(a<=0)continue;
         x.globalAlpha=a*(near?.6:.34);x.beginPath();x.arc(px,py,near?2:1.1,0,6.2832);x.fill();
-      }
-      if(near&&W>=900){ox=cx;oy=cy;
-        x.fillStyle=acc;x.strokeStyle=acc;x.lineWidth=1.5;
-        x.globalAlpha=.12;x.beginPath();x.moveTo(ox,oy);x.lineTo(ox+ax,oy+ay);x.lineTo(ox+ax+bx,oy+ay+by);x.lineTo(ox+bx,oy+by);x.closePath();x.fill();
-        x.globalAlpha=.85;
-        [[ax,ay,'b₁'],[bx,by,'b₂']].forEach(function(v){
-          var ex=ox+v[0],ey=oy+v[1],t=Math.atan2(v[1],v[0]);
-          x.beginPath();x.moveTo(ox,oy);x.lineTo(ex,ey);x.stroke();
-          x.beginPath();x.moveTo(ex,ey);x.lineTo(ex-9*Math.cos(t-.4),ey-9*Math.sin(t-.4));x.lineTo(ex-9*Math.cos(t+.4),ey-9*Math.sin(t+.4));x.closePath();x.fill();
-          x.font='11px ui-monospace,Consolas,monospace';x.fillText(v[2],ex+8,ey+4);
-        });
-        x.globalAlpha=1;
       }
     });
   }
